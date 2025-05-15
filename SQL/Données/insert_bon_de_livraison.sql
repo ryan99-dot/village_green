@@ -1,0 +1,16 @@
+INSERT INTO bon_de_livraison (numero_bon_livraison, statut) VALUES
+('BL001', 'Envoyé'),
+('BL002', 'En préparation'),
+('BL003', 'Livré'),
+('BL004', 'Partiellement livré'),
+('BL005', 'Préparé'),
+('BL006', 'En attente'),
+('BL007', 'Annulé'),
+('BL008', 'En préparation'),
+('BL009', 'Livré'),
+('BL010', 'En cours d\'expédition'),
+('BL011', 'En cours d\'expédition'),
+('BL012', 'Livré'),
+('BL013', 'En préparation'),
+('BL014', 'Annulé'),
+('BL015', 'En attente');

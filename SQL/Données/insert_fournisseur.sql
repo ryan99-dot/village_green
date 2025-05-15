@@ -1,0 +1,16 @@
+INSERT INTO fournisseur (reference_fournisseur, nom_fournisseur, mail_fournisseur, telephone_fournisseur) VALUES
+('FOUR001', 'Musique Plus', 'contact@musiqueplus.fr', '0123456789'),
+('FOUR002', 'Instruments Pro', 'info@instrumentspro.com', '0987654321'),
+('FOUR003', 'Sonorité', 'support@sonorite.fr', '0147258369'),
+('FOUR004', 'Harmony', 'service@harmony.com', '0173648291'),
+('FOUR005', 'Melody Corp', 'contact@melodycorp.fr', '0165987432'),
+('FOUR006', 'Acoustic World', 'info@acousticworld.com', '0156324789'),
+('FOUR007', 'Digital Harmony', 'contact@digitalharmony.fr', '0187456321'),
+('FOUR008', 'ElectroSound', 'support@electrosound.com', '0145897632'),
+('FOUR009', 'BassLine', 'contact@bassline.fr', '0192837465'),
+('FOUR010', 'Orchestra Supply', 'info@orchestrasupply.com', '0178965412'),
+('FOUR011', 'Percussion Center', 'vente@percussioncenter.fr', '0165478932'),
+('FOUR012', 'PianoHouse', 'contact@pianohouse.fr', '0147852369'),
+('FOUR013', 'GuitarZone', 'service@guitarzone.com', '0189567324'),
+('FOUR014', 'StudioMix', 'contact@studiomix.fr', '0132456789'),
+('FOUR015', 'Musicalia', 'info@musicalia.com', '0178456329');

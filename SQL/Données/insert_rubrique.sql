@@ -1,0 +1,16 @@
+INSERT INTO rubrique (nom_rubrique, photo_rubrique) VALUES
+('Cordes', 'cordes.jpg'),
+('Claviers', 'claviers.jpg'),
+('Percussions', 'percussions.jpg'),
+('Cuivres', 'cuivres.jpg'),
+('Accessoires', 'accessoires.jpg'),
+('Bois', 'bois.jpg'),
+('Sonorisation', 'sonorisation.jpg'),
+('Éclairage', 'eclairage.jpg'),
+('Informatique musicale', 'informatique_musicale.jpg'),
+('Partitions & Méthodes', 'partitions.jpg'),
+('DJ & MAO', 'dj_mao.jpg'),
+('Microphones', 'microphones.jpg'),
+('Enregistrement', 'enregistrement.jpg'),
+('Entretien & Réparation', 'entretien.jpg'),
+('Produits numériques', 'produits_numeriques.jpg');

@@ -1,0 +1,17 @@
+INSERT INTO produit (reference_produit, nom_produit, description, prix, prix_achat, photo_produit, quantite_stock, publication, actif, id_sous_rubrique, reference_fournisseur) VALUES
+('PROD001', 'Guitare Acoustique', 'Guitare acoustique en bois massif', 150.00, 100.00, 'guitare_acoustique.jpg', 10, TRUE, TRUE, 1, 'FOUR001'),
+('PROD002', 'Basse Électrique', 'Basse électrique 4 cordes', 200.00, 140.00, 'basse_electrique.jpg', 5, TRUE, TRUE, 2, 'FOUR002'),
+('PROD003', 'Piano Numérique', 'Piano numérique 88 touches', 500.00, 350.00, 'piano_numerique.jpg', 3, TRUE, TRUE, 3, 'FOUR003'),
+('PROD004', 'Synthétiseur Analogique', 'Synthétiseur avec sons vintage', 300.00, 220.00, 'synth_analogique.jpg', 7, TRUE, TRUE, 4, 'FOUR004'),
+('PROD005', 'Batterie Électronique', 'Kit de batterie électronique complet', 450.00, 320.00, 'batterie_electronique.jpg', 2, TRUE, TRUE, 5, 'FOUR005'),
+('PROD006', 'Congas en bois', 'Paire de congas professionnels', 280.00, 180.00, 'congas_bois.jpg', 4, TRUE, TRUE, 6, 'FOUR006'),
+('PROD007', 'Trompette Sib', 'Trompette en laiton avec étui', 320.00, 240.00, 'trompette_sib.jpg', 6, TRUE, TRUE, 7, 'FOUR007'),
+('PROD008', 'Saxophone Alto', 'Saxophone alto doré', 600.00, 420.00, 'saxophone_alto.jpg', 3, TRUE, TRUE, 8, 'FOUR008'),
+('PROD009', 'Câble Jack-Jack 6m', 'Câble audio 6 mètres pour instrument', 15.00, 10.00, 'cable_jack.jpg', 20, TRUE, TRUE, 9, 'FOUR009'),
+('PROD010', 'Support Guitare', 'Support pliable pour guitare acoustique/électrique', 25.00, 18.00, 'support_guitare.jpg', 15, TRUE, TRUE, 10, 'FOUR010'),
+('PROD011', 'Guitare Électrique', 'Guitare électrique 6 cordes, corps en érable', 180.00, 130.00, 'guitare_electrique.jpg', 5, TRUE, TRUE, 1, 'FOUR001'),
+('PROD012', 'Ampli Guitare', 'Ampli de guitare 30W avec effets', 120.00, 85.00, 'ampli_guitare.jpg', 8, TRUE, TRUE, 1, 'FOUR001'),
+('PROD013', 'Basse Active', 'Basse active avec préampli', 250.00, 180.00, 'basse_active.jpg', 4, TRUE, TRUE, 2, 'FOUR001'), 
+('PROD014', 'Piano à queue', 'Piano à queue acoustique', 1200.00, 900.00, 'piano_queue.jpg', 2, FALSE, TRUE, 3, 'FOUR003'),  
+('PROD015', 'Microphone USB', 'Microphone de studio pour enregistrement', 80.00, 60.00, 'microphone_usb.jpg', 10, TRUE, FALSE, 5, 'FOUR005'),  
+('PROD016', 'Batterie Acoustique', 'Batterie acoustique avec cymbales', 600.00, 450.00, 'batterie_acoustique.jpg', 5, TRUE, TRUE, 5, 'FOUR005');

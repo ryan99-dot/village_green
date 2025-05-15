@@ -1,0 +1,16 @@
+INSERT INTO adresse (adresse, ville, code_postal) VALUES
+('12 rue de la Musique', 'Paris', '75001'),
+('45 avenue des Notes', 'Lyon', '69002'),
+('78 boulevard du Son', 'Marseille', '13003'),
+('23 impasse des Rythmes', 'Toulouse', '31000'),
+('56 allée des Harmonies', 'Nice', '06000'),
+('10 rue des Musiciens', 'Paris', '75015'),
+('25 boulevard Harmonie', 'Lyon', '69003'),
+('3 avenue des Instruments', 'Marseille', '13006'),
+('18 rue du Conservatoire', 'Bordeaux', '33000'),
+('47 place du Métronome', 'Toulouse', '31000'),
+('12 rue de la Clé de Sol', 'Nantes', '44000'),
+('7 chemin des Partitions', 'Strasbourg', '67000'),
+('30 allée du Jazz', 'Lille', '59000'),
+('5 impasse des Cordes', 'Nice', '06000'),
+('22 rue du Solfège', 'Rennes', '35000');

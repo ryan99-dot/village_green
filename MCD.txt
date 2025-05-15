@@ -1,0 +1,132 @@
+Sub Create_Tables()
+
+DoCmd.RunSQL "CREATE TABLE Fournisseur(" & _
+   "Reference_fournisseur VARCHAR(20)," & _
+   "Nom_fournisseur VARCHAR(50) NOT NULL," & _
+   "Mail_fournisseur VARCHAR(50) NOT NULL," & _
+   "Telephone_fournisseur VARCHAR(10) NOT NULL," & _
+   "PRIMARY KEY(Reference_fournisseur)" & _
+");"   
+
+DoCmd.RunSQL "CREATE TABLE Rubrique(" & _
+   "Nom_rubrique VARCHAR(50)," & _
+   "PRIMARY KEY(Nom_rubrique)" & _
+");"   
+
+DoCmd.RunSQL "CREATE TABLE Sous_rubrique(" & _
+   "Nom_sous_rubrique VARCHAR(50)," & _
+   "Nom_rubrique VARCHAR(50) NOT NULL," & _
+   "PRIMARY KEY(Nom_sous_rubrique)," & _
+   "FOREIGN KEY(Nom_rubrique) REFERENCES Rubrique(Nom_rubrique)" & _
+");"   
+
+DoCmd.RunSQL "CREATE TABLE Taxe(" & _
+   "Coefficient DECIMAL(15,2)," & _
+   "PRIMARY KEY(Coefficient)" & _
+");"   
+
+DoCmd.RunSQL "CREATE TABLE Reduction(" & _
+   "Reduction DECIMAL(15,2)," & _
+   "PRIMARY KEY(Reduction)" & _
+");"   
+
+DoCmd.RunSQL "CREATE TABLE Service_entreprise(" & _
+   "Nom_service VARCHAR(50)," & _
+   "PRIMARY KEY(Nom_service)" & _
+");"   
+
+DoCmd.RunSQL "CREATE TABLE Duree_de_conservation(" & _
+   "Duree INT," & _
+   "PRIMARY KEY(Duree)" & _
+");"   
+
+DoCmd.RunSQL "CREATE TABLE Produit(" & _
+   "Reference_produit VARCHAR(20)," & _
+   "Nom_produit VARCHAR(50) NOT NULL," & _
+   "Description VARCHAR(200) NOT NULL," & _
+   "Prix DECIMAL(10,2) NOT NULL," & _
+   "Photo VARCHAR(100) NOT NULL," & _
+   "Quantite_stock INT NOT NULL," & _
+   "Nom_sous_rubrique VARCHAR(50) NOT NULL," & _
+   "Reference_fournisseur VARCHAR(20) NOT NULL," & _
+   "PRIMARY KEY(Reference_produit)," & _
+   "FOREIGN KEY(Nom_sous_rubrique) REFERENCES Sous_rubrique(Nom_sous_rubrique)," & _
+   "FOREIGN KEY(Reference_fournisseur) REFERENCES Fournisseur(Reference_fournisseur)" & _
+");"   
+
+DoCmd.RunSQL "CREATE TABLE Utilisateur(" & _
+   "Identifiant VARCHAR(50)," & _
+   "Role VARCHAR(50) NOT NULL," & _
+   "Nom VARCHAR(50) NOT NULL," & _
+   "Categorie_client VARCHAR(50)," & _
+   "Prenom VARCHAR(50) NOT NULL," & _
+   "Telephone VARCHAR(10)," & _
+   "Mail VARCHAR(50) NOT NULL," & _
+   "Mot_de_passe VARCHAR(50) NOT NULL," & _
+   "Nom_service VARCHAR(50) NOT NULL," & _
+   "Reduction DECIMAL(15,2)," & _
+   "Identifiant_1 VARCHAR(50) NOT NULL," & _
+   "Coefficient DECIMAL(15,2) NOT NULL," & _
+   "PRIMARY KEY(Identifiant)," & _
+   "FOREIGN KEY(Nom_service) REFERENCES Service_entreprise(Nom_service)," & _
+   "FOREIGN KEY(Reduction) REFERENCES Reduction(Reduction)," & _
+   "FOREIGN KEY(Identifiant_1) REFERENCES Utilisateur(Identifiant)," & _
+   "FOREIGN KEY(Coefficient) REFERENCES Taxe(Coefficient)" & _
+");"   
+
+DoCmd.RunSQL "CREATE TABLE Commande(" & _
+   "Numero_de_commande VARCHAR(20)," & _
+   "Date_commande DATE NOT NULL," & _
+   "Etat VARCHAR(50) NOT NULL," & _
+   "Identifiant VARCHAR(50) NOT NULL," & _
+   "Duree INT NOT NULL," & _
+   "PRIMARY KEY(Numero_de_commande)," & _
+   "FOREIGN KEY(Identifiant) REFERENCES Utilisateur(Identifiant)," & _
+   "FOREIGN KEY(Duree) REFERENCES Duree_de_conservation(Duree)" & _
+");"   
+
+DoCmd.RunSQL "CREATE TABLE Bon_de_livraison(" & _
+   "Numero_bon_de_livraison VARCHAR(20)," & _
+   "Adresse_L VARCHAR(100) NOT NULL," & _
+   "Ville_L VARCHAR(50) NOT NULL," & _
+   "Code_postal_L VARCHAR(5) NOT NULL," & _
+   "Duree INT NOT NULL," & _
+   "Numero_de_commande VARCHAR(20) NOT NULL," & _
+   "PRIMARY KEY(Numero_bon_de_livraison)," & _
+   "FOREIGN KEY(Duree) REFERENCES Duree_de_conservation(Duree)," & _
+   "FOREIGN KEY(Numero_de_commande) REFERENCES Commande(Numero_de_commande)" & _
+");"   
+
+DoCmd.RunSQL "CREATE TABLE Facture(" & _
+   "Numero_facture VARCHAR(20)," & _
+   "Adresse_F VARCHAR(100) NOT NULL," & _
+   "Code_postal_F VARCHAR(5) NOT NULL," & _
+   "Ville_F VARCHAR(50) NOT NULL," & _
+   "Duree INT NOT NULL," & _
+   "Numero_de_commande VARCHAR(20) NOT NULL," & _
+   "PRIMARY KEY(Numero_facture)," & _
+   "UNIQUE(Numero_de_commande)," & _
+   "FOREIGN KEY(Duree) REFERENCES Duree_de_conservation(Duree)," & _
+   "FOREIGN KEY(Numero_de_commande) REFERENCES Commande(Numero_de_commande)" & _
+");"   
+
+DoCmd.RunSQL "CREATE TABLE Paiement(" & _
+   "Reference_paiement VARCHAR(20)," & _
+   "Type VARCHAR(50) NOT NULL," & _
+   "Statut VARCHAR(50) NOT NULL," & _
+   "Date_paiement DATE NOT NULL," & _
+   "Numero_de_commande VARCHAR(20) NOT NULL," & _
+   "PRIMARY KEY(Reference_paiement)," & _
+   "UNIQUE(Numero_de_commande)," & _
+   "FOREIGN KEY(Numero_de_commande) REFERENCES Commande(Numero_de_commande)" & _
+");"   
+
+DoCmd.RunSQL "CREATE TABLE Donne_lieu_a(" & _
+   "Reference_produit VARCHAR(20)," & _
+   "Numero_de_commande VARCHAR(20)," & _
+   "PRIMARY KEY(Reference_produit, Numero_de_commande)," & _
+   "FOREIGN KEY(Reference_produit) REFERENCES Produit(Reference_produit)," & _
+   "FOREIGN KEY(Numero_de_commande) REFERENCES Commande(Numero_de_commande)" & _
+");"   
+
+End Sub

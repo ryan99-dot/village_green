@@ -1,0 +1,16 @@
+INSERT INTO commande (numero_de_commande, date_commande, etat, reference_paiement, type_paiement, statut_paiement, date_paiement, duree_conservation, identifiant) VALUES
+('CMD001', '2025-04-20', 'En cours', 'PAY001', 'Carte Bancaire', 'Payé', '2025-04-20', 1095, 'cli_part1'),
+('CMD002', '2025-04-21', 'Livrée', 'PAY002', 'Virement', 'En attente', NULL, 1095, 'cli_pro1'),
+('CMD003', '2025-04-22', 'Préparée', 'PAY003', 'Chèque', 'En attente', NULL, 1095, 'cli_pro2'),
+('CMD004', '2025-04-22', 'En cours', 'PAY004', 'Carte Bancaire', 'Payé', '2025-04-22', 1095, 'cli_part2'),
+('CMD005', '2025-04-23', 'En cours', 'PAY005', 'Virement', 'Payé', '2025-04-23', 1095, 'cli_pro3'),
+('CMD006', '2025-04-23', 'Livrée', 'PAY006', 'Carte Bancaire', 'Payé', '2025-04-23', 1095, 'cli_part3'),
+('CMD007', '2025-04-24', 'En cours', 'PAY007', 'Chèque', 'En attente', NULL, 1095, 'cli_pro4'),
+('CMD008', '2025-04-24', 'Annulée', 'PAY008', 'Carte Bancaire', 'Annulé', NULL, 1095, 'cli_part4'),
+('CMD009', '2025-04-25', 'Préparée', 'PAY009', 'Carte Bancaire', 'Payé', '2025-04-25', 1095, 'cli_part5'),
+('CMD010', '2025-04-25', 'En cours', 'PAY010', 'Virement', 'Payé', '2025-04-25', 1095, 'cli_pro5'),
+('CMD011', '2024-05-15', 'En cours', 'PAY003', 'Carte Bancaire', 'Payé', '2024-05-15', 1095, 'cli_part1'),
+('CMD012', '2024-06-20', 'Livrée', 'PAY004', 'Virement', 'En attente', NULL, 1095, 'cli_pro2'),
+('CMD013', '2024-07-10', 'Annulée', 'PAY005', 'Chèque', 'Non payé', NULL, 1095, 'cli_part2'),
+('CMD014', '2024-08-05', 'En cours', 'PAY006', 'Carte Bancaire', 'Payé', '2024-08-05', 1095, 'cli_pro1'),
+('CMD015', '2024-09-18', 'Livrée', 'PAY007', 'Virement', 'En attente', NULL, 1095, 'cli_part1');

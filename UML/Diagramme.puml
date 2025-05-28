@@ -1,0 +1,61 @@
+@startuml village_green
+left to right direction
+
+actor Client as cli
+actor Commercial as com
+actor Employé as e
+
+usecase "Consulter le catalogue" as 1
+usecase "Se connecter" as 2
+usecase "Consulter le profil" as 3
+usecase "Gérer le panier" as 4
+usecase "S'inscrire" as 5
+usecase "Valider le panier" as 6
+usecase "Voir l'historique des commandes" as 7
+usecase "Modifier le catalogue" as 8
+usecase "Mettre à jour le stock" as 9
+usecase "Publier des produits" as 10
+usecase "Désactiver des produits" as 11
+usecase "Créer rubrique" as 12
+usecase "Créer sous-rubrique" as 13
+usecase "Ajuster coefficient taxe" as 14
+usecase "Ajuster réduction" as 15
+usecase "Modifier les coordonnées" as 16
+usecase "Editer un bon de livraison" as 17
+usecase "Editer une facture" as 18
+usecase "Choisir type de paiement" as 19
+usecase "Contacter" as 20
+usecase "Se déconnecter" as 21
+usecase "Rechercher un produit" as 22
+usecase "Consulter le statut de la commande" as 23
+usecase "Voir le tableau de bord de gestion" as 24
+
+cli --> 1
+cli -up-> 2
+com -up-> 2
+e -up-> 2
+cli --> 3
+cli --> 4
+cli --> 5
+4 --> 6 
+cli --> 7
+e --> 8
+8 --> 9
+8 --> 10
+8 --> 11
+8 --> 12
+12 <-- 13 : <<extend>>
+com --> 14
+com --> 15
+3 --> 16 
+6 --> 17 : <<include>>
+19 --> 18 : <<include>>
+6 --> 19 : <<include>>
+cli --> 20
+com --> 20
+2 <-up- 21 : <<extend>>
+1 --> 22 
+7 --> 23
+e --> 24
+com --> 24
+@enduml

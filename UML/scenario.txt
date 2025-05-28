@@ -1,0 +1,203 @@
+    --Description
+Ce cas d'utilisation permet de passer une commande par le client.
+
+    --Conditions
+Le client est déjà inscrit.
+Ses coordonnées sont à jour.
+Le ou les produits sont disponibles.
+
+    --Résultats
+Une commande est passée.
+Création de documents (facture, bon de livraison).
+Mise à jour du stock des produits et de l'historique des commandes.
+
+    --Flux nominal
+Le client arrive sur le site
+Le systeme affiche la page d'accueil
+Le client clique sur connexion
+Le systeme affiche la page de connexion
+Le client rentre son identifiant, son mot de passe et clique sur se connecter
+Le systeme renvoie sur la page du profil
+Le client clique sur categorie
+Le systeme affiche les toutes les categories
+Le client choisit la categorie qu'il souhaite
+Le systeme affiche les sous categories
+Le client choist la sous categorie qu'il souhaite
+Le systeme affiche tous les produits de la sous categorie
+Le client choisit le produit qu'il souhaite
+Le systeme affiche les details du produit
+Le client modifie la quantité souhaitée et clique sur "ajouter au panier"
+Le systeme demande au client s'il souhaite continuer ses achats ou acceder au panier
+Le client clique sur "vers le panier"
+Le systeme affiche le panier
+Le client clique sur "passer a la livraison"
+Le systeme affiche les moyens de livraison ainsi que la ou les adresses renseignées sur le profil
+Le client choisit l'adresse et clique "passer au paiement"
+Le systeme affiche les moyens de paiement disponible, le total de la commande ainsi que la réduction si le client en a
+Le client selectionne son moyen de paiement et rentre les informations nécessaires si besoin et clique sur "valider la commande"
+Le systeme affiche la confirmation de la commande
+Le systeme met à jour le stock du produit et les informations des commandes du client
+Le systeme envoie un mail contenant la confirmation de la commande et le récapitulatif et la facture
+
+    --Client non inscrit
+Le client arrive sur le site
+Le systeme affiche la page d'accueil
+Le client clique sur inscription
+Le systeme affiche la page d'inscription
+Le client rentre les informations nécessaires et clique sur s'inscrire
+Le systeme renvoie sur la page du profil
+Le client clique sur categorie
+Le systeme affiche les toutes les categories
+Le client choisit la categorie qu'il souhaite
+Le systeme affiche les sous categories
+Le client choist la sous categorie qu'il souhaite
+Le systeme affiche tous les produits de la sous categorie
+Le client choisit le produit qu'il souhaite
+Le systeme affiche les details du produit
+Le client modifie la quantité souhaitée et clique sur "ajouter au panier"
+Le systeme demande au client s'il souhaite continuer ses achats ou acceder au panier
+Le client clique sur "vers le panier"
+Le systeme affiche le panier
+Le client clique sur "passer a la livraison"
+Le systeme affiche les moyens de livraison ainsi que la ou les adresses renseignées sur le profil
+Le client choisit l'adresse et clique "passer au paiement"
+Le systeme affiche les moyens de paiement disponible, le total de la commande ainsi que la réduction si le client en a
+Le client selectionne son moyen de paiement et rentre les informations nécessaires si besoin et clique sur "valider la commande"
+Le systeme affiche la confirmation de la commande
+Le systeme met à jour le stock du produit et les informations des commandes du client
+Le systeme envoie un mail contenant la confirmation de la commande et le récapitulatif et la facture
+
+    --Adresse non à jour
+Le client arrive sur le site
+Le systeme affiche la page d'accueil
+Le client clique sur connexion
+Le systeme affiche la page de connexion
+Le client rentre son identifiant, son mot de passe et clique sur se connecter
+Le systeme renvoie sur la page du profil
+Le client clique sur categorie
+Le systeme affiche les toutes les categories
+Le client choisit la categorie qu'il souhaite
+Le systeme affiche les sous categories
+Le client choist la sous categorie qu'il souhaite
+Le systeme affiche tous les produits de la sous categorie
+Le client choisit le produit qu'il souhaite
+Le systeme affiche les details du produit
+Le client modifie la quantité souhaitée et clique sur "ajouter au panier"
+Le systeme demande au client s'il souhaite continuer ses achats ou acceder au panier
+Le client clique sur "vers le panier"
+Le systeme affiche le panier
+Le client clique sur "passer a la livraison"
+Le systeme affiche les moyens de livraison ainsi que la ou les adresses renseignées sur le profil
+Le client remarque que les adresses ne sont pas à jour, il clique sur "ajouter une adresse"
+Le systeme renvoe le formulaire pour la création d'une nouvelle adresse
+Le client rentre ses informations et clique sur "ajouter"
+Le systeme renvoie la page de selection du moyen de livraison
+Le client choisit l'adresse et clique "passer au paiement"
+Le systeme affiche les moyens de paiement disponible, le total de la commande ainsi que la réduction si le client en a
+Le client selectionne son moyen de paiement et rentre les informations nécessaires si besoin et clique sur "valider la commande"
+Le systeme affiche la confirmation de la commande
+Le systeme met à jour le stock du produit et les informations des commandes du client
+Le systeme envoie un mail contenant la confirmation de la commande et le récapitulatif et la facture
+
+    --Produit en stock limité
+Le client arrive sur le site
+Le systeme affiche la page d'accueil
+Le client clique sur connexion
+Le systeme affiche la page de connexion
+Le client rentre son identifiant, son mot de passe et clique sur se connecter
+Le systeme renvoie sur la page du profil
+Le client clique sur categorie
+Le systeme affiche les toutes les categories
+Le client choisit la categorie qu'il souhaite
+Le systeme affiche les sous categories
+Le client choist la sous categorie qu'il souhaite
+Le systeme affiche tous les produits de la sous categorie
+Le client choisit le produit qu'il souhaite
+Le systeme affiche les details du produit
+Le client modifie la quantité souhaitée
+Le systeme affiche une ligen d'erreur en signalant qu'il ne reste que n produit et la quantité reste à la dernière valable
+Le client clique sur "ajouter au panier"
+Le systeme demande au client s'il souhaite continuer ses achats ou acceder au panier
+Le client clique sur "vers le panier"
+Le systeme affiche le panier
+Le client clique sur "passer a la livraison"
+Le systeme affiche les moyens de livraison ainsi que la ou les adresses renseignées sur le profil
+Le client choisit l'adresse et clique "passer au paiement"
+Le systeme affiche les moyens de paiement disponible, le total de la commande ainsi que la réduction si le client en a
+Le client selectionne son moyen de paiement et rentre les informations nécessaires si besoin et clique sur "valider la commande"
+Le systeme affiche la confirmation de la commande
+Le systeme met à jour le stock du produit et les informations des commandes du client
+Le systeme envoie un mail contenant la confirmation de la commande et le récapitulatif et la facture
+
+    --Produit en rupture et le client prend un autre 
+Le client arrive sur le site
+Le systeme affiche la page d'accueil
+Le client clique sur connexion
+Le systeme affiche la page de connexion
+Le client rentre son identifiant, son mot de passe et clique sur se connecter
+Le systeme renvoie sur la page du profil
+Le client recherche le produit souhaité
+Le syteme affiche les resultats de la recherche
+Le client selectionne le produit
+Le systeme affiche les informations du prosuit et la phrase "en rupture" et propose un ensemble de produit similaire
+Le client choisit le produit qu'il souhaite
+Le systeme affiche les details du produit
+Le client modifie la quantité souhaitée et clique sur "ajouter au panier"
+Le systeme demande au client s'il souhaite continuer ses achats ou acceder au panier
+Le client clique sur "vers le panier"
+Le systeme affiche le panier
+Le client clique sur "passer a la livraison"
+Le systeme affiche les moyens de livraison ainsi que la ou les adresses renseignées sur le profil
+Le client choisit l'adresse et clique "passer au paiement"
+Le systeme affiche les moyens de paiement disponible, le total de la commande ainsi que la réduction si le client en a
+Le client selectionne son moyen de paiement et rentre les informations nécessaires si besoin et clique sur "valider la commande"
+Le systeme affiche la confirmation de la commande
+Le systeme met à jour le stock du produit et les informations des commandes du client
+Le systeme envoie un mail contenant la confirmation de la commande et le récapitulatif et la facture
+
+    --Produit en rupture et le client ne commande pas
+Le client arrive sur le site
+Le systeme affiche la page d'accueil
+Le client clique sur connexion
+Le systeme affiche la page de connexion
+Le client rentre son identifiant, son mot de passe et clique sur se connecter
+Le systeme renvoie sur la page du profil
+Le client recherche le produit souhaité
+Le syteme affiche les resultats de la recherche
+Le client selectionne le produit
+Le systeme affiche les informations du prosuit et la phrase "en rupture" et propose un ensemble de produit similaire
+Le client clique sur "m'avertir quand cet article sera de nouveau en stock"
+Le systeme retourne la ligne que la demande a bien été prise en compte
+Le client clique sur "se déconnecter"
+
+    --Moyen de paiemnt non à jour
+Le client arrive sur le site
+Le systeme affiche la page d'accueil
+Le client clique sur connexion
+Le systeme affiche la page de connexion
+Le client rentre son identifiant, son mot de passe et clique sur se connecter
+Le systeme renvoie sur la page du profil
+Le client clique sur categorie
+Le systeme affiche les toutes les categories
+Le client choisit la categorie qu'il souhaite
+Le systeme affiche les sous categories
+Le client choist la sous categorie qu'il souhaite
+Le systeme affiche tous les produits de la sous categorie
+Le client choisit le produit qu'il souhaite
+Le systeme affiche les details du produit
+Le client modifie la quantité souhaitée et clique sur "ajouter au panier"
+Le systeme demande au client s'il souhaite continuer ses achats ou acceder au panier
+Le client clique sur "vers le panier"
+Le systeme affiche le panier
+Le client clique sur "passer a la livraison"
+Le systeme affiche les moyens de livraison ainsi que la ou les adresses renseignées sur le profil
+Le client choisit l'adresse et clique "passer au paiement"
+Le systeme affiche les moyens de paiement disponible, le total de la commande ainsi que la réduction si le client en a
+Le client remarque que les moyens de paiement ne sont pas à jour et clique sur ajouter un moyen de paiement
+Le systeme renvoie un formulaire pour ajouter un nouveau moyen de paiement
+Le client clique sur "ajouter"
+Le systeme renvoie la page de paiement
+Le client selectionne son moyen de paiement et rentre les informations nécessaires si besoin et clique sur "valider la commande"
+Le systeme affiche la confirmation de la commande
+Le systeme met à jour le stock du produit et les informations des commandes du client
+Le systeme envoie un mail contenant la confirmation de la commande et le récapitulatif et la facture

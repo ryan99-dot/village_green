@@ -1,0 +1,38 @@
+@startuml village_green
+start
+:Arrive sur accueil;
+if (Inscrit ?) then (non)
+    :Saisis les infos;
+else (oui)
+endif
+if (Connecté ?) then (non)
+    :Saisis les infos;
+else (oui)
+endif
+repeat
+    repeat
+    if (Sait ce qu'il veut) then (oui)
+        :Lance une recherche;
+    else (non)
+        :Parcours le catalogue;
+    endif
+    :Ajoute l'article au panier;
+    repeat while (Article en rupture) is (oui) not (non)
+repeat while (Panier finalisé ?) is (non) not (oui)
+if (Client a ce qu'il souhaite ?) then (non)
+    stop
+else (oui)
+endif
+if (Adresse à jour ?) then (non)
+    :Ajoute l'adresse;
+else (oui)
+endif
+:Selectionne adresse de livraison;
+if (Moyen de paiement à jour ?) then (non)
+    :Ajoute moyen de paiement;
+else (oui)
+endif
+:Selectionne moyen de paiement;
+:Valide;
+end
+@enduml

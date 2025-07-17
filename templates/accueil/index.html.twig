@@ -1,0 +1,118 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AccueilController!
+{% endblock %}
+
+{% block body %}
+	<div class="container-fluid">
+		<div class="row">
+			{% for rubrique in rubriques %}
+				<div class="col-4 my-5 d-flex justify-content-center">
+					<a href="#" class="card text-decoration-none custom-link">
+						<img src="{{rubrique.photo}}" class="card-img-top object-fit-cover" alt="{{rubrique.nom}}">
+						<div class="card-body p-0">
+							<p class="card-text text-center text-uppercase bg-secondary-subtle d-flex align-items-center justify-content-center">{{rubrique.nom}}</p>
+						</div>
+					</a>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+	<div class="row">
+		<div class="container col-5 my-5">
+			<h5 class="fw-bold mb-3">Produits Vedettes</h5>
+
+			<div id="produitsVedettes" class="carousel slide" data-bs-ride="carousel">
+				<div class="carousel-inner rounded shadow-sm border">
+					{% for produit in produits %}
+						<div class="carousel-item {% if loop.first %} active {% endif %}">
+							<div class="d-flex carousels">
+								<img src="{{produit.photo}}" class="flex-shrink-0 w-50">
+								<div class="flex-grow-1 position-relative bg-light">
+									<div class="position-absolute top-50 start-0 translate-middle-y ps-3">
+										<h6 class="fw-bold">{{produit.nom}}</h6>
+										<p class="fst-italic mb-0">{{produit.prix}}€</p>
+									</div>
+									{{produit.description}}
+								</div>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+
+
+				<!-- Contrôles -->
+				<button class="carousel-control-prev" type="button" data-bs-target="#produitsVedettes" data-bs-slide="prev">
+					<span class="carousel-control-prev-icon bg-dark rounded-circle" aria-hidden="true"></span>
+					<span class="visually-hidden">Précédent</span>
+				</button>
+				<button class="carousel-control-next" type="button" data-bs-target="#produitsVedettes" data-bs-slide="next">
+					<span class="carousel-control-next-icon bg-dark rounded-circle" aria-hidden="true"></span>
+					<span class="visually-hidden">Suivant</span>
+				</button>
+
+				<!-- Indicateurs -->
+				<div class="carousel-indicators mt-2">
+					{% for produit in produits %}
+						<button type="button" data-bs-target="#produitsVedettes" data-bs-slide-to="{{ loop.index0 }}" class="{% if loop.first %}active bg-custom{% endif %}" {% if loop.first %} aria-current="true" {% endif %} aria-label="Slide {{ loop.index }}"></button>
+					{% endfor %}
+				</div>
+
+
+			</div>
+		</div>
+
+		<div class="container col-5 my-5">
+			<h5 class="fw-bold mb-3">Marques Vedettes</h5>
+
+			<div id="marquesVedettes" class="carousel slide" data-bs-ride="carousel">
+				<div class="carousel-inner rounded shadow-sm border">
+					{% for bloc in fournisseurs %}
+						<div class="carousel-item {% if loop.first %} active {% endif %}">
+							<div
+								class="d-flex flex-row align-items-stretch carousels">
+								<!-- Colonne gauche : image + nom du fournisseur -->
+								<div class="w-50 position-relative">
+									<img src="{{ bloc.produits[0].photo }}" class="w-100 h-100 object-fit-cover" alt="Photo du produit vedette">
+									<h6 class="fw-bold position-absolute bottom-0 start-0 m-2 bg-white bg-opacity-75 px-2 py-1 rounded">
+										{{ bloc.fournisseur.nom }}
+									</h6>
+								</div>
+
+								<!-- Colonne droite : liste des produits -->
+								<div class="w-50 bg-light p-3 overflow-auto">
+									<ul class="list-unstyled mb-0">
+										{% for produit in bloc.produits %}
+											<li class="d-flex justify-content-between border-bottom py-1">
+												<span>{{ produit.nom }}</span>
+												<span>{{ produit.prix }}€</span>
+											</li>
+										{% endfor %}
+									</ul>
+								</div>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+
+
+				<!-- Contrôles -->
+				<button class="carousel-control-prev" type="button" data-bs-target="#marquesVedettes" data-bs-slide="prev">
+					<span class="carousel-control-prev-icon bg-dark rounded-circle" aria-hidden="true"></span>
+					<span class="visually-hidden">Précédent</span>
+				</button>
+				<button class="carousel-control-next" type="button" data-bs-target="#marquesVedettes" data-bs-slide="next">
+					<span class="carousel-control-next-icon bg-dark rounded-circle" aria-hidden="true"></span>
+					<span class="visually-hidden">Suivant</span>
+				</button>
+
+				<!-- Indicateurs -->
+				<div class="carousel-indicators mt-2">
+					{% for fournisseur in fournisseurs %}
+						<button type="button" data-bs-target="#marquesVedettes" data-bs-slide-to="{{ loop.index0 }}" class="{% if loop.first %}active bg-custom{% endif %}" {% if loop.first %} aria-current="true" {% endif %} aria-label="Slide {{ loop.index }}"></button>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

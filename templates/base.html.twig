@@ -2,6 +2,7 @@
 <html lang="fr">
 	<head>
 		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>
 			{% block title %}Welcome!
 			{% endblock %}
@@ -58,10 +59,10 @@
 						<a class="nav-link text-uppercase fs-5 custom-link" href="{{path('app_accueil')}}">Accueil</a>
 					</li>
 					<li class="nav-item col-3 text-center border-end border-black">
-						<a class="nav-link text-uppercase fs-5 custom-link" href="{{path('app_categories')}}">Catégories</a>
+						<a class="nav-link text-uppercase fs-5 custom-link" href="{{path('app_rubriques')}}">Catégories</a>
 					</li>
 					<li class="nav-item col-3 text-center border-end border-black">
-						<a class="nav-link text-uppercase fs-5 custom-link" href="{{path('app_produits')}}">Produits</a>
+						<a class="nav-link text-uppercase fs-5 custom-link" href="{{path('app_all_produits')}}">Produits</a>
 					</li>
 					<li class="nav-item col-3 text-center">
 						<a class="nav-link text-uppercase fs-5 custom-link" href="#">Contact</a>
@@ -79,7 +80,7 @@
 		</div>
 	</header>
 		{% block body %}{% endblock %}
-		<footer class="bg-secondary-subtle">
+		<footer class="bg-secondary-subtle mt-5 mt-lg-0">
 			<div class="container-fluid">
 				<ul class="d-flex flex-row p-0">
 					<li class="text-center col-4 d-flex justify-content-center align-items-center">

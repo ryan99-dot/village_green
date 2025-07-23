@@ -24,7 +24,7 @@ class SousRubrique
     /**
      * @var Collection<int, Produit>
      */
-    #[ORM\OneToMany(targetEntity: Produit::class, mappedBy: 'sous_rubrique')]
+    #[ORM\OneToMany(targetEntity: Produit::class, mappedBy: 'sousRubrique')]
     private Collection $produits;
 
     #[ORM\ManyToOne(inversedBy: 'sousRubriques')]

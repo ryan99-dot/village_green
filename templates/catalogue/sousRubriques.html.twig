@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CatalogueController!
+{% endblock %}
+
+{% block body %}
+	<div class="container-fluid">
+		<div class="row">
+			{% for sousRubrique in rubrique.sousRubriques %}
+				<div class="col-12 col-lg-4 my-2 my-lg-5 d-flex justify-content-center">
+					<a href="{{ path('app_produits', { sousRubrique: sousRubrique.id}) }}" class="card rubrique text-decoration-none custom-link w-100">
+						<img src="{{sousRubrique.photo}}" class="card-img-top object-fit-cover" alt="{{sousRubrique.nom}}">
+						<div class="card-body p-0">
+							<p class="card-text text-center text-uppercase bg-secondary-subtle d-flex align-items-center justify-content-center h-100">{{sousRubrique.nom}}</p>
+						</div>
+					</a>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}

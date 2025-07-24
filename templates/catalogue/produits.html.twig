@@ -15,7 +15,7 @@
 								<a href='{{ path('app_produit', { produit: produit.id}) }}' class="card-text text-center text-uppercase text-decoration-none custom-link d-flex align-items-center justify-content-center mb-1 h-100">{{produit.nom}}</a>
 								<p class="mb-0">{{produit.reference}}</p>
 							</div>
-							<p class="ms-5 fst-italic">{{produit.prix}}€</p>
+							<p class="ms-5 fst-italic">{{produit.prix|number_format(2, '.', ' ')}}€</p>
 							<p class="ms-4 mb-5">{{produit.description}}</p>
 							<form action="/panier/add/{{ produit.id }}" method="post" class="m-4 d-flex align-items-center gap-2 justify-content-end">
 								<label for="quantity_{{ produit.id }}" class="form-label mb-0">

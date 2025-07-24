@@ -15,7 +15,7 @@
 					</div>
 					<p class="m-4 p-2 description bg-secondary-subtle">{{produit.description}}</p>
 					<form action="/panier/add/{{ produit.id }}" method="post" class="ms-4 mt-3 d-flex align-items-center gap-2 justify-content-end">
-						<label for="quantity_{{ produit.id }}" class="form-label mb-0">{{produit.prix}}€ x </label>
+						<label for="quantity_{{ produit.id }}" class="form-label mb-0">{{produit.prix|number_format(2, '.', ' ')}}€ x </label>
 						<input type="number" id="quantity_{{ produit.id }}" name="quantity" value="1" min="1" class="form-control quantite"/>
 						<button type="submit" class="btn btn-vert text-white">Ajouter au panier</button>
 					</form>

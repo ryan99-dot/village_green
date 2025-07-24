@@ -1,17 +1,29 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PanierController!{% endblock %}
+{% block title %}Hello PanierController!
+{% endblock %}
 
 {% block body %}
+	{% for elt in panier %}
+		<div class="col-6 my-4 ms-1 d-flex flex-column flex-lg-row bg-secondary-subtle">
+			<img src="{{elt.produit.photo}}" class="object-fit-cover w-25 h-25" alt="{{elt.produit.nom}}">
+			<div class="card-body p-0 mt-5 mt-lg-0">
+				<h4 class="text-uppercase mb-1 nom_article ms-2">{{elt.produit.nom}}</h4>
+				<p class="mb-0 ms-3">{{elt.produit.reference}}</p>
+				<div class="d-flex justify-content-end align-items-center me-5 fts-italic">
+					<p class="fst-italic mb-0 me-2">{{elt.produit.prix|number_format(2, '.', ' ')}}
+						x</p>
+					<form method="post" action="/panier/update/{{ elt.produit.id }}" class="ms-3">
+						<input type="number" id="quantity_{{ elt.produit.id }}" name="quantity" value="{{ elt.quantite }}" min="1" class="form-control quantite me-4" onchange="this.form.submit()">
+					</form>
+                    <a href="/panier/delete/{{ elt.produit.id }}"><i class="bi bi-trash3 supprimer"></i></a>
 
-    {% for elt in panier %}
-        <div>
-        {{ elt.produit.nom }}
-        <br>
-                <a class="btn btn-vert text-white" href="/panier/del/{{ elt.produit.id }}">--</a>
-        {{ elt.quantite }}
-        <a class="btn btn-vert text-white" href="/panier/add/{{ elt.produit.id }}">++</a>
-        </div>
-    {% endfor %}
+				</div>
+				<p class="d-flex justify-content-end m-3">Total :
+					{{ (elt.produit.prix * elt.quantite)|number_format(2, '.', ' ') }}
+					€</p>
 
+			</div>
+		</div>
+	{% endfor %}
 {% endblock %}

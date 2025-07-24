@@ -36,11 +36,7 @@ class Panier
         $panier = $this->session->get('panier', []);
 
         if (isset($panier[$id])) {
-
-            $panier[$id]--;
-            if ($panier[$id] == 0) {
                 unset($panier[$id]);
-            }
         }
 
         $this->session->set('panier', $panier);

@@ -8,6 +8,7 @@ use App\Service\Panier;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Attribute\Route;
 
 final class PanierController extends AbstractController
@@ -33,7 +34,23 @@ final class PanierController extends AbstractController
         return $this->redirectToRoute('app_panier');
     }
 
-    #[Route('/panier/del/{produit}', name: 'app_panier_del')]
+    #[Route('/panier/update/{id}', name: 'app_panier_update', methods: ['POST'])]
+    public function updatePanier(int $id, Request $request, SessionInterface $session): Response
+    {
+        $quantity = (int) $request->request->get('quantity');
+        $panier = $session->get('panier', []);
+
+        if ($quantity >= 1) {
+            $panier[$id] = $quantity;
+        }
+
+        $session->set('panier', $panier);
+
+        return $this->redirectToRoute('app_panier');
+    }
+
+
+    #[Route('/panier/delete/{produit}', name: 'app_panier_delete')]
     public function del(Panier $panier, Produit $produit): Response
     {
         $panier->del($produit->getId());

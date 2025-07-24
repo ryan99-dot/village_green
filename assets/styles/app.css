@@ -4,13 +4,19 @@
 }
 
 .custom-link:hover,
-.nom_article {
+.nom_article,
+.supprimer {
     color: #06663e;
 }
 
 .carousel-indicators .active.bg-custom,
 .btn-vert {
     background-color: #06663e !important;
+}
+
+.form-control:focus {
+	border-color: #06663e;
+	box-shadow: 0 0 0 0.25rem rgba(6, 102, 62, 0.25); /* Halo vert foncé */
 }
 
 .rubrique {
@@ -53,6 +59,11 @@
 .produits_img {
     width: 30%;
 }
+
+.col-2.point5 {
+    width: 20%;
+}
+
 
 @media (min-width: 992px) {
     .image {

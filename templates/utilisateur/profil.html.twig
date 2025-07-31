@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil
+{% endblock %}
+
+{% block body %}
+	<div class="d-flex">
+		<div class="container col-3 d-flex flex-column bg-secondary-subtle mb-5">
+			<h1 class="my-3 font-weight-normal text-decoration-underline">Mon profil</h1>
+			<a href="{{path('app_infos')}}" class="ms-4 mb-2">Mes informations</a>
+			<a href="#" class="ms-4 mb-2">Mes adresses</a>
+			<a href="{{path('app_commandes')}}" class="ms-4">Mes commandes</a>
+		</div>
+		<div class="container flex-column col-lg-8">
+			<div class="container ">
+
+				{{form_start(form, {'attr':{'class': 'bg-secondary-subtle d-flex flex-column align-items-center mt-5'}})}}
+				{{ form_errors(form) }}
+				<h1 class="h3 my-3 font-weight-normal text-decoration-underline">Changement de mot de passe</h1>
+
+				{{form_label(form.currentPassword)}}
+				{{form_widget(form.currentPassword, {'attr':{'class': 'text-center w-75'}})}}
+				<div class="text-center mb-3 text-danger">
+					{{form_errors(form.currentPassword)}}
+				</div>
+
+				{{ form_label(form.password.first) }}
+				{{ form_widget(form.password.first, {'attr': {'class': 'text-center w-75 mb-3'}}) }}
+
+
+				{{ form_label(form.password.second) }}
+				{{ form_widget(form.password.second, {'attr': {'class': 'text-center w-75 mb-3'}}) }}
+
+				<div class="text-center mb-3 text-danger">
+					{{ form_errors(form.password.first) }}
+					{{ form_errors(form.password.second) }}
+				</div>
+
+
+				{{form_row(form.save, {'label' : "Changer de mot de passe", 'attr':{'class': 'btn-vert text-white'}})}}
+
+				{{ form_row(form._token) }}
+
+				{{form_end(form, {'render_rest': false})}}
+			</div>
+			<div class="container mb-5">
+
+				{{form_start(formAdresse, {'attr':{'class': 'bg-secondary-subtle d-flex flex-column align-items-center mt-5'}})}}
+				<h1 class="h3 my-3 font-weight-normal text-decoration-underline">Ajouter une nouvelle adresse</h1>
+
+				{{form_label(formAdresse.adresse)}}
+				{{form_widget(formAdresse.adresse, {'attr':{'class': 'text-center w-75 mb-3'}})}}
+				{{form_errors(formAdresse.adresse)}}
+
+				{{form_label(formAdresse.ville)}}
+				{{form_widget(formAdresse.ville, {'attr':{'class': 'text-center w-75 mb-3'}})}}
+				{{form_errors(formAdresse.ville)}}
+
+				{{form_label(formAdresse.codePostal)}}
+				{{form_widget(formAdresse.codePostal, {'attr':{'class': 'text-center w-75 mb-3'}})}}
+				{{form_errors(formAdresse.codePostal)}}
+
+				{{form_row(formAdresse.save, {'label' : "Ajouter l'adresse", 'attr':{'class': 'btn-vert text-white'}})}}
+
+				{{form_end(formAdresse)}}
+
+			</div>
+		</div>
+	</div>
+{% endblock %}

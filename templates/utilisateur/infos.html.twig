@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes informations
+{% endblock %}
+
+{% block body %}
+	{{form_start(form, {'attr':{'class': 'bg-secondary-subtle d-flex flex-column align-items-center mt-5'}})}}
+	{{ form_errors(form) }}
+	<h1 class="h3 my-3 font-weight-normal text-decoration-underline text-uppercase">Mes informations</h1>
+
+
+	{{form_label(form.nom)}}
+	{{form_widget(form.nom, {'attr':{'class': 'text-center w-75 mb-3'}})}}
+	{{form_errors(form.nom)}}
+
+	{{form_label(form.prenom)}}
+	{{form_widget(form.prenom, {'attr':{'class': 'text-center w-75 mb-3'}})}}
+	{{form_errors(form.prenom)}}
+
+	{{form_label(form.email)}}
+	{{form_widget(form.email, {'attr':{'class': 'text-center w-75 mb-3'}})}}
+	{{form_errors(form.email)}}
+
+	{{form_label(form.telephone)}}
+	{{form_widget(form.telephone, {'attr':{'class': 'text-center w-75 mb-3'}})}}
+	{{form_errors(form.telephone)}}
+
+	{% if is_granted('ROLE_CLIENT') %}
+		<div class="d-flex flex-column align-items-center w-100">
+			{{ form_label(form.categorieClient, null, {'label_attr': {'class': 'text-center w-75'}}) }}
+			<div class="form-control w-75 d-flex flex-column align-items-center bg-white mb-3">
+				{{ form_widget(form.categorieClient) }}
+			</div>
+			{{ form_errors(form.categorieClient) }}
+		</div>
+	{% endif %}
+
+
+	{% if utilisateur.reduction is not null %}
+		<p class="mb-2">Réduction</p>
+		<p class="form-control text-center w-75 mb-3">{{utilisateur.reduction}}</p>
+	{% endif %}
+
+	<p class="mb-2">Taxe</p>
+	<p class="form-control text-center w-75 mb-3">{{utilisateur.coefficientTaxe}}</p>
+
+	{% if utilisateur.commercial is not null %}
+		<p class="mb-2">Commercial</p>
+		<p class="form-control text-center w-75 mb-3">{{utilisateur.commercial.nom}},
+			{{utilisateur.commercial.prenom}}
+			<br>
+			<a href="" class="lien">{{utilisateur.commercial.email}}</a></p>
+	{% endif %}
+
+
+	{{form_row(form.save, {'label' : "Valider les modifications", 'attr':{'class': 'btn-vert text-white'}})}}
+
+	{{ form_row(form._token) }}
+
+	{{form_end(form, {'render_rest': false})}}
+{% endblock %}

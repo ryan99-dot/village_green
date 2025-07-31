@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription
+{% endblock %}
+
+{% block body %}
+	<div class="container col-lg-8">
+
+		{{form_start(form, {'attr':{'class': 'bg-secondary-subtle d-flex flex-column align-items-center mt-5'}})}}
+		{{ form_errors(form) }}
+		<h1 class="h3 my-3 font-weight-normal text-decoration-underline">Inscription</h1>
+
+
+		{{form_label(form.nom)}}
+		{{form_widget(form.nom, {'attr':{'class': 'text-center w-75 mb-3'}})}}
+		{{form_errors(form.nom)}}
+
+		{{form_label(form.prenom)}}
+		{{form_widget(form.prenom, {'attr':{'class': 'text-center w-75 mb-3'}})}}
+		{{form_errors(form.prenom)}}
+
+		{{form_label(form.email)}}
+		{{form_widget(form.email, {'attr':{'class': 'text-center w-75 mb-3'}})}}
+		{{form_errors(form.email)}}
+
+		{{ form_label(form.password.first) }}
+		{{ form_widget(form.password.first, {'attr': {'class': 'text-center w-75 mb-3'}}) }}
+
+
+		{{ form_label(form.password.second) }}
+		{{ form_widget(form.password.second, {'attr': {'class': 'text-center w-75'}}) }}
+		<div class="text-center mb-3 text-danger">
+			{{ form_errors(form.password.first) }}
+            {{ form_errors(form.password.second) }}
+		</div>
+
+
+		{{form_row(form.save, {'label' : "S'inscrire", 'attr':{'class': 'btn-vert text-white'}})}}
+
+		{{ form_row(form._token) }}
+
+		{{form_end(form, {'render_rest': false})}}
+	</div>
+{% endblock %}

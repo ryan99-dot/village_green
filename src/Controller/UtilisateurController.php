@@ -129,4 +129,80 @@ final class UtilisateurController extends AbstractController
             'commandes' => $commandes
         ]);
     }
+
+    #[IsGranted('ROLE_USER')]
+    #[Route('profil/commandes/{id}', name: 'app_commande_detail')]
+    public function commandeDetail(int $id, CommandeRepository $repo): Response
+    {
+        $utilisateur = $this->getUser();
+        $commande = $repo->find($id);
+
+        // Sécurité : empêcher l’accès aux commandes des autres utilisateurs
+        if (!$commande || $commande->getUtilisateur() !== $utilisateur) {
+            throw $this->createAccessDeniedException('Commande introuvable.');
+        }
+
+        return $this->render('utilisateur/commande_detail.html.twig', [
+            'commande' => $commande
+        ]);
+    }
+
+    #[IsGranted('ROLE_USER')]
+    #[Route('/profil/adresses', name: 'app_adresses')]
+    public function adresses(): Response
+    {
+        /** @var Utilisateur $utilisateur */
+        $utilisateur = $this->getUser();
+
+        return $this->render('utilisateur/adresses.html.twig', [
+            'adresses' => $utilisateur->getAdresses(),
+        ]);
+    }
+
+    #[IsGranted('ROLE_USER')]
+    #[Route('/profil/adresse/{id}/edit', name: 'app_adresse_edit')]
+    public function editAdresse(int $id, Request $request, EntityManagerInterface $em): Response
+    {
+        $utilisateur = $this->getUser();
+        $adresse = $em->getRepository(Adresse::class)->find($id);
+
+        // Vérification de sécurité
+        if (!$adresse || $adresse->getUtilisateur() !== $utilisateur) {
+            throw $this->createAccessDeniedException('Accès interdit.');
+        }
+
+        $form = $this->createForm(AdresseType::class, $adresse);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->flush();
+            $this->addFlash('success', 'Adresse mise à jour.');
+            return $this->redirectToRoute('app_adresses');
+        }
+
+        return $this->render('utilisateur/adresse_edit.html.twig', [
+            'form' => $form,
+        ]);
+    }
+
+    #[IsGranted('ROLE_USER')]
+    #[Route('/profil/adresse/{id}/delete', name: 'app_adresse_delete', methods: ['POST'])]
+    public function deleteAdresse(int $id, Request $request, EntityManagerInterface $em): Response
+    {
+        $utilisateur = $this->getUser();
+        $adresse = $em->getRepository(Adresse::class)->find($id);
+
+        if (!$adresse || $adresse->getUtilisateur() !== $utilisateur) {
+            throw $this->createAccessDeniedException('Accès interdit.');
+        }
+
+        // Protection CSRF
+        if ($this->isCsrfTokenValid('delete' . $adresse->getId(), $request->request->get('_token'))) {
+            $em->remove($adresse);
+            $em->flush();
+            $this->addFlash('success', 'Adresse supprimée.');
+        }
+
+        return $this->redirectToRoute('app_adresses');
+    }
 }

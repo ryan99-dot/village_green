@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block body %}
-	{{form_start(form, {'attr':{'class': 'bg-secondary-subtle d-flex flex-column align-items-center mt-5'}})}}
+	{{form_start(form, {'attr':{'class': 'bg-secondary-subtle d-flex flex-column align-items-center my-5'}})}}
 	{{ form_errors(form) }}
 	<h1 class="h3 my-3 font-weight-normal text-decoration-underline text-uppercase">Mes informations</h1>
 
@@ -49,7 +49,8 @@
 		<p class="form-control text-center w-75 mb-3">{{utilisateur.commercial.nom}},
 			{{utilisateur.commercial.prenom}}
 			<br>
-			<a href="" class="lien">{{utilisateur.commercial.email}}</a></p>
+			<a href="" class="lien">{{utilisateur.commercial.email}}</a>
+		</p>
 	{% endif %}
 
 

@@ -12,11 +12,11 @@
 
 .carousel-indicators .active.bg-custom,
 .btn-vert,
-.badge {
+.badge{
     background-color: #06663e !important;
 }
 
-.form-control:focus {
+.form-control:focus, .form-select:focus {
     border-color: #06663e;
     box-shadow: 0 0 0 0.25rem rgba(6, 102, 62, 0.25);
 }
@@ -26,7 +26,7 @@ input[type="radio"].form-check-input:checked {
         border-color: #06663e;
 	}
 
-	input[type="radio"].form-check-input:focus {
+input[type="radio"].form-check-input:focus {
 		box-shadow: 0 0 0 0.2rem rgba(6, 102, 62, 0.25);
 		border-color: #06663e;
 	}

@@ -5,16 +5,16 @@
 
 {% block body %}
 	<div class="d-flex">
-		<div class="container col-3 d-flex flex-column bg-secondary-subtle mb-5">
+		<div class="container col-3 d-flex flex-column bg-secondary-subtle mb-5 rounded">
 			<h1 class="my-3 font-weight-normal text-decoration-underline">Mon profil</h1>
-			<a href="{{path('app_infos')}}" class="ms-4 mb-2">Mes informations</a>
-			<a href="#" class="ms-4 mb-2">Mes adresses</a>
-			<a href="{{path('app_commandes')}}" class="ms-4">Mes commandes</a>
+			<a href="{{path('app_infos')}}" class="ms-4 mb-2 lien">Mes informations</a>
+			<a href="{{path('app_adresses')}}" class="ms-4 mb-2 lien">Mes adresses</a>
+			<a href="{{path('app_commandes')}}" class="ms-4 lien">Mes commandes</a>
 		</div>
 		<div class="container flex-column col-lg-8">
 			<div class="container ">
 
-				{{form_start(form, {'attr':{'class': 'bg-secondary-subtle d-flex flex-column align-items-center mt-5'}})}}
+				{{form_start(form, {'attr':{'class': 'bg-secondary-subtle d-flex flex-column align-items-center mt-5 rounded'}})}}
 				{{ form_errors(form) }}
 				<h1 class="h3 my-3 font-weight-normal text-decoration-underline">Changement de mot de passe</h1>
 
@@ -45,7 +45,7 @@
 			</div>
 			<div class="container mb-5">
 
-				{{form_start(formAdresse, {'attr':{'class': 'bg-secondary-subtle d-flex flex-column align-items-center mt-5'}})}}
+				{{form_start(formAdresse, {'attr':{'class': 'bg-secondary-subtle d-flex flex-column align-items-center mt-5 rounded'}})}}
 				<h1 class="h3 my-3 font-weight-normal text-decoration-underline">Ajouter une nouvelle adresse</h1>
 
 				{{form_label(formAdresse.adresse)}}

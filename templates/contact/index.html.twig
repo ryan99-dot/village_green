@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block body %}
+    <div class="container col-lg-8">
+
+        {{ form_start(form, {'attr':{'class': 'bg-secondary-subtle d-flex flex-column align-items-center my-5 p-4 rounded'}}) }}
+        {{ form_errors(form) }}
+
+        <h1 class="h3 my-3 font-weight-normal text-decoration-underline">Contact</h1>
+
+        {{ form_label(form.nom) }}
+        {{ form_widget(form.nom, {'attr':{'class': 'text-center w-75 mb-3'}}) }}
+        {{ form_errors(form.nom) }}
+
+        {{ form_label(form.prenom) }}
+        {{ form_widget(form.prenom, {'attr':{'class': 'text-center w-75 mb-3'}}) }}
+        {{ form_errors(form.prenom) }}
+
+        {{ form_label(form.email) }}
+        {{ form_widget(form.email, {'attr':{'class': 'text-center w-75 mb-3'}}) }}
+        {{ form_errors(form.email) }}
+
+        {{ form_label(form.message) }}
+        {{ form_widget(form.message, {'attr':{'class': 'w-75 mb-3'}}) }}
+        {{ form_errors(form.message) }}
+
+        {{ form_row(form.save) }}
+
+        {{ form_row(form._token) }}
+
+        {{ form_end(form, {'render_rest': false}) }}
+    </div>
+{% endblock %}

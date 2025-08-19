@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier l'adresse
+{% endblock %}
+
+{% block body %}
+	<div class="container mt-4">
+		<h2>Modifier l'adresse</h2>
+
+		{{ form_start(form) }}
+		{{form_row(form.adresse)}}
+		{{form_row(form.ville)}}
+		{{form_row(form.codePostal)}}
+		{{form_row(form.save, {'label' : "Modifier l'adresse", 'attr':{'class': 'btn-vert text-white mt-3'}})}}
+		{{ form_end(form) }}
+
+	</div>
+{% endblock %}

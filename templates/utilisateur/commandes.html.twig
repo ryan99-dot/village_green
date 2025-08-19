@@ -9,7 +9,7 @@
 			{% for commande in commandes %}
 				<div class="col-md-4">
 					<div class="card h-100 text-center bg-secondary-subtle">
-						<a href="#" class="card-body text-decoration-none">
+						<a href="{{ path('app_commande_detail', {id: commande.id}) }}" class="card-body text-decoration-none">
 							<h4 class="card-title">{{ commande.numero }}</h4>
 							<p class="card-text">Date :
 								{{ commande.date|date('d/m/Y') }}</p>

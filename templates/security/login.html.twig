@@ -4,7 +4,7 @@
 
 {% block body %}
 <div class="container col-lg-8">
-<form method="post" class="bg-secondary-subtle d-flex flex-column align-items-center mt-5">
+<form method="post" class="bg-secondary-subtle d-flex flex-column align-items-center mt-5 rounded">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}

@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes adresses{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <h2>Mes adresses</h2>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Adresse</th>
+                <th>Ville</th>
+                <th>Code postal</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for adresse in adresses %}
+                <tr>
+                    <td>{{ adresse.adresse }}</td>
+                    <td>{{ adresse.ville }}</td>
+                    <td>{{ adresse.codePostal }}</td>
+                    <td>
+                        <a href="{{ path('app_adresse_edit', {id: adresse.id}) }}" class="btn btn-sm btn-vert text-white">Modifier</a>
+                        <form method="post" action="{{ path('app_adresse_delete', {id: adresse.id}) }}" style="display:inline-block" onsubmit="return confirm('Supprimer cette adresse ?');">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ adresse.id) }}">
+                            <button class="btn btn-sm btn-danger">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4" class="text-center">Aucune adresse enregistrée.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -15,7 +15,7 @@ class Commande
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $numero = null;
 
     #[ORM\Column]
@@ -24,7 +24,7 @@ class Commande
     #[ORM\Column(length: 255)]
     private ?string $etat = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $referencePaiement = null;
 
     #[ORM\Column(length: 255)]

@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Résultats de recherche{% endblock %}
+
+{% block body %}
+    <div class="container my-4">
+        <h2 class="mb-5">Résultats pour : "{{ query }}"</h2>
+
+        {% if produits is empty and rubriques is empty and sousRubriques is empty %}
+            <p>Aucun résultat trouvé.</p>
+        {% endif %}
+
+        {% if produits is not empty %}
+            <h3 class="titre_recherche mt-5 ps-3">Produits</h3>
+            <ul class="list-group mb-3">
+                {% for produit in produits %}
+                    <a href="{{ path('app_produit', {produit: produit.id}) }}" class="list-group-item list-group-item-action">
+                        <strong>{{ produit.nom }}</strong><br>
+                        <small>{{ produit.description|slice(0, 100) ~ '...' }}</small>
+                    </a>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        {% if rubriques is not empty %}
+            <h3 class="titre_recherche mt-5 ps-3">Rubriques</h3>
+            <ul class="list-group mb-3">
+                {% for rubrique in rubriques %}
+                    <a href="{{ path('app_sous_rubriques', {rubrique: rubrique.id}) }}" class="list-group-item list-group-item-action">
+                        {{ rubrique.nom }}
+                    </a>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        {% if sousRubriques is not empty %}
+            <h3 class="titre_recherche mt-5 ps-3">Sous-rubriques</h3>
+            <ul class="list-group mb-3">
+                {% for sr in sousRubriques %}
+                    <a href="{{ path('app_produits', {sousRubrique: sr.id}) }}" class="list-group-item list-group-item-action">
+                        {{ sr.nom }}
+                    </a>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+{% endblock %}

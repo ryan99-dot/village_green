@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Confirmation commande{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h2>Merci pour votre commande !</h2>
+    <p>Votre commande <strong>{{ commande.numero }}</strong> a bien été enregistrée.</p>
+    <p>Nous vous enverrons un mail dès qu’elle sera validée.</p>
+</div>
+{% endblock %}

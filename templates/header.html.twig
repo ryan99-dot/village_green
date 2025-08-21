@@ -60,7 +60,7 @@
 		<div class="container-fluid p-0">
 			<ul class="navbar-nav d-flex flex-row w-100 m-0">
 				<li class="nav-item col-2 point5 text-center border-end border-black">
-					<a class="nav-link text-uppercase fs-5 custom-link" href="#">
+					<a class="nav-link text-uppercase fs-5 custom-link" href="{{path('app_contact')}}">
 						<i class="bi bi-chat"></i>
 					</a>
 				</li>
@@ -93,11 +93,12 @@
 
 	<!-- Formulaire de recherche en dessous -->
 	<div class="container my-3 col-8 col-lg-4">
-		<form class="d-flex" role="search">
-			<input class="form-control text-center me-2" type="search" placeholder="Recherche" aria-label="Rechercher"/>
+		<form class="d-flex" role="search" method="get" action="{{ path('app_recherche') }}">
+			<input class="form-control text-center me-2" type="search" name="recherche" placeholder="Recherche" aria-label="Rechercher" required>
 			<button class="btn btn-outline-success" type="submit">
 				<i class="bi bi-search"></i>
 			</button>
 		</form>
 	</div>
+
 </header>

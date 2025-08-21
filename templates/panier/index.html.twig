@@ -9,7 +9,7 @@
 			<div class="col-lg-8">
 				{% for elt in panier %}
 					<div class="my-4 ms-1 d-flex flex-column flex-lg-row bg-secondary-subtle rounded">
-						<img src="{{elt.produit.photo}}" class="object-fit-cover w-25 h-25 rounded-start" alt="{{elt.produit.nom}}">
+						<img src="{{elt.produit.photo}}" class="object-fit-cover w-25 rounded-start" alt="{{elt.produit.nom}}">
 						<div class="card-body p-0 mt-5 mt-lg-0">
 							<h4 class="text-uppercase mb-1 nom_article ms-2 pt-2">{{elt.produit.nom}}</h4>
 							<p class="mb-0 ms-3">{{elt.produit.reference}}</p>
@@ -84,10 +84,12 @@
 
 					<hr>
 
-					<h6 class="fw-bold">ADRESSE</h6>
-					<p class="d-flex justify-content-between mb-1 w-100">
+					<form
+						method="post" action="{{ path('app_commande_valider') }}">
+						{# Sélection de l'adresse #}
+						<h6 class="fw-bold">ADRESSE</h6>
 						{% if app.user and app.user.adresses|length > 0 %}
-							<select name="adresse" id="adresse" class="form-select">
+							<select name="adresse" id="adresse" class="form-select mb-3" required>
 								{% for adresse in app.user.adresses %}
 									<option value="{{ adresse.id }}">
 										{{ adresse.adresse }},
@@ -97,52 +99,49 @@
 								{% endfor %}
 							</select>
 						{% else %}
-							<span>Mon adresse .......</span>
-							<a href="{{ path('app_login') }}" class="lien">Se connecter</a>
+							<p>Veuillez vous
+								<a href="{{ path('app_login') }}">connecter</a>
+								pour choisir une adresse</p>
 						{% endif %}
-					</p>
 
+						<hr>
 
-					<hr>
-
-					<h6 class="fw-bold">MOYEN DE PAIEMENT</h6>
-					<p class="d-flex justify-content-between mb-1">
-						{% if not app.user %}
-							<span>Mon moyen de paiement .......</span>
-							<a href="{{ path('app_login') }}" class="lien">Se connecter</a>
-						{% else %}
+						{# Moyen de paiement #}
+						<h6 class="fw-bold">MOYEN DE PAIEMENT</h6>
+						{% if app.user %}
 							{% if app.user.categorieClient == 'Particulier' %}
-								<span>Carte bancaire</span>
+								<input type="hidden" name="paiement" value="cb">
+								<p>Carte bancaire</p>
 							{% elseif app.user.categorieClient == 'Professionnel' %}
-								<div class="d-flex flex-column">
-									<div class="form-check">
-										<input class="form-check-input" type="radio" id="cb" name="moyenPaiement" value="cb" checked>
-										<label class="form-check-label" for="cb">
-											Carte bancaire
-										</label>
-									</div>
-									<div class="form-check">
-										<input class="form-check-input" type="radio" id="cheque" name="moyenPaiement" value="cheque">
-										<label class="form-check-label" for="cheque">
-											Chèque
-										</label>
-									</div>
+								<div class="form-check">
+									<input class="form-check-input" type="radio" id="virement" name="paiement" value="virement" checked>
+									<label class="form-check-label" for="virement">Virement</label>
 								</div>
-							{% else %}
-								<span>Non défini</span>
+								<div class="form-check">
+									<input class="form-check-input" type="radio" id="cheque" name="paiement" value="cheque">
+									<label class="form-check-label" for="cheque">Chèque</label>
+								</div>
 							{% endif %}
+						{% else %}
+							<p>
+								<a href="{{ path('app_login') }}">Se connecter</a>
+								pour choisir un moyen de paiement</p>
 						{% endif %}
-					</p>
 
-					<hr>
-					<p class="d-flex justify-content-between fw-bold">
-						{% set total = sousTotal + valeurTaxe - valeurReduction + fraisLivraison %}
-						<span>TOTAL</span>
-						<span>{{total|number_format(2, '.', ' ')}}
-							€</span>
-					</p>
+						<hr>
+						<p class="d-flex justify-content-between fw-bold">
 
-					<button class="btn btn-vert text-white w-100 mt-3">VALIDER LA COMMANDE</button>
+							<span>TOTAL</span>
+							{% if app.user %}
+								{% set total = sousTotal + valeurTaxe - valeurReduction + fraisLivraison %}
+								<span>{{total|number_format(2, '.', ' ')}}
+									€</span>
+							{% else %}
+								<span>. . . . . , . . €</span>
+							{% endif %}
+						</p>
+						<button type="submit" class="btn btn-vert text-white w-100 mt-3">VALIDER LA COMMANDE</button>
+					</form>
 				</div>
 			</div>
 		</div>

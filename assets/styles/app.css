@@ -6,7 +6,8 @@
 .custom-link:hover,
 .nom_article,
 .supprimer,
-.lien {
+.lien,
+.titre_recherche {
     color: #06663e;
 }
 

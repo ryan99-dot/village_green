@@ -12,6 +12,11 @@
 		<!-- Menu de droite -->
 		<ul class="navbar-nav d-none d-lg-flex flex-row justify-content-end align-items-center col-4 m-0">
 			{% if app.user %}
+				{% if app.user.service == 'Ventes' %}
+					<li class="nav-item d-flex justify-content-center align-items-center mx-2">
+						<a class="nav-link custom-link" href="{{path('app_clients')}}">Mes clients</a>
+					</li>
+				{% endif %}
 				<li class="nav-item d-flex justify-content-center align-items-center mx-2">
 					<a class="nav-link custom-link" href="{{path('app_logout')}}">Déconnexion</a>
 				</li>

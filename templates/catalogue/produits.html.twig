@@ -1,12 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{sousRubrique.nom}}
+{% block title %}
+	{{sousRubrique.nom}}
 {% endblock %}
 
 {% block body %}
-	<div class="container-fluid">
+	<div class="container-fluid text-center">
+		<a href="{{path('app_produit_new')}}" class="btn btn-vert text-white btn-lg fw-bold mt-2">Ajouter</a>
 		<div class="row">
 			{% for produit in sousRubrique.produits %}
+			{% if produit.actif or (not produit.actif and app.user and app.user.service == 'Achat')%}
+			
 				<div class="col-12 col-lg-6 my-2 my-lg-5 d-flex justify-content-center">
 					<div class="card produit d-flex flex-row bg-secondary-subtle w-100">
 						<a href="{{ path('app_produit', { produit: produit.id}) }}" class="produits_img"><img src="{{produit.photo}}" class="card-img-left object-fit-cover w-100 h-100 rounded-start" alt="{{produit.nom}}"></a>
@@ -18,14 +22,23 @@
 							<p class="ms-5 fst-italic">{{produit.prix|number_format(2, '.', ' ')}}€</p>
 							<p class="ms-4 mb-5">{{produit.description}}</p>
 							<form action="/panier/add/{{ produit.id }}" method="post" class="m-4 d-flex align-items-center gap-2 justify-content-end">
-								<label for="quantity_{{ produit.id }}" class="form-label mb-0">
-								</label>
+								<label for="quantity_{{ produit.id }}" class="form-label mb-0"></label>
 								<input type="number" id="quantity_{{ produit.id }}" name="quantity" value="1" min="1" class="form-control quantite"/>
 								<button type="submit" class="btn btn-vert text-white">Ajouter au panier</button>
 							</form>
 						</div>
 					</div>
+					{% if app.user and app.user.service == 'Achat' %}
+						<div class="mt-2 text-center">
+							<a href="{{path('app_produit_edit', {id: produit.id})}}" class="btn btn-warning btn-sm mb-2">Modifier</a>
+							<form method="post" action="{{ path('app_produit_delete', {id: produit.id}) }}" onsubmit="return confirm('Supprimer ce produit ?');" style="display:inline;">
+								<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ produit.id) }}">
+								<button class="btn btn-danger btn-sm">Supprimer</button>
+							</form>
+						</div>
+					{% endif %}
 				</div>
+				{% endif %}
 			{% endfor %}
 		</div>
 	</div>

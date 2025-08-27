@@ -41,8 +41,10 @@
 		<p class="form-control text-center w-75 mb-3">{{utilisateur.reduction}}</p>
 	{% endif %}
 
-	<p class="mb-2">Taxe</p>
-	<p class="form-control text-center w-75 mb-3">{{utilisateur.coefficientTaxe}}</p>
+	{% if is_granted('ROLE_CLIENT') %}
+		<p class="mb-2">Taxe</p>
+		<p class="form-control text-center w-75 mb-3">{{utilisateur.coefficientTaxe}}</p>
+	{% endif %}
 
 	{% if utilisateur.commercial is not null %}
 		<p class="mb-2">Commercial</p>

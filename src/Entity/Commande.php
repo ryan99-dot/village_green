@@ -67,7 +67,7 @@ class Commande
         return $this->numero;
     }
 
-    public function setNumero(string $numero): static
+    public function setNumero(?string $numero): static
     {
         $this->numero = $numero;
 
@@ -103,7 +103,7 @@ class Commande
         return $this->referencePaiement;
     }
 
-    public function setReferencePaiement(string $referencePaiement): static
+    public function setReferencePaiement(?string $referencePaiement): static
     {
         $this->referencePaiement = $referencePaiement;
 

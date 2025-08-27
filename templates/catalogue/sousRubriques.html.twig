@@ -1,9 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{rubrique.nom}}{% endblock %}
+{% block title %}
+	{{rubrique.nom}}
+{% endblock %}
 
 {% block body %}
-	<div class="container-fluid">
+	<div class="container-fluid text-center">
+		<a href="{{path('app_sous_rubrique_new')}}" class="btn btn-vert text-white btn-lg fw-bold mt-2">Ajouter</a>
 		<div class="row">
 			{% for sousRubrique in rubrique.sousRubriques %}
 				<div class="col-12 col-lg-4 my-2 my-lg-5 d-flex justify-content-center">
@@ -13,6 +16,15 @@
 							<p class="card-text text-center text-uppercase bg-secondary-subtle d-flex align-items-center justify-content-center h-100">{{sousRubrique.nom}}</p>
 						</div>
 					</a>
+					{% if app.user and app.user.service == 'Achat' %}
+						<div class="mt-2 text-center">
+							<a href="{{path('app_sous_rubrique_edit', {id: sousRubrique.id})}}" class="btn btn-warning btn-sm mb-2">Modifier</a>
+							<form method="post" action="{{ path('app_sous_rubrique_delete', {id: sousRubrique.id}) }}" onsubmit="return confirm('Supprimer cette sous rubrique ?');" style="display:inline;">
+								<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ sousRubrique.id) }}">
+								<button class="btn btn-danger btn-sm">Supprimer</button>
+							</form>
+						</div>
+					{% endif %}
 				</div>
 			{% endfor %}
 		</div>

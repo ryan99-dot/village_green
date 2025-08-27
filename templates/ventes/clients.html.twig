@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes Clients
+{% endblock %}
+
+{% block body %}
+	<div class="container mt-5">
+		<h1 class="mb-4 text-center">Clients de
+			{{ commercial.prenom }}
+			{{ commercial.nom }}</h1>
+
+		{% if clients is empty %}
+			<div class="alert alert-info text-center">
+				Aucun client associé pour le moment.
+			</div>
+		{% else %}
+			<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+				{% for client in clients %}
+					<div class="col">
+						<a href="{{ path('app_client_infos', {'id': client.id}) }}" class="text-decoration-none">
+
+							<div class="card shadow-sm h-100">
+								<div class="card-body">
+									<h5 class="card-title">{{ client.prenom }}
+										{{ client.nom }}</h5>
+									<p class="card-text">
+										<strong>Email :</strong>
+										{{ client.email }}
+										<br>
+										<strong>Catégorie :</strong>
+										{{ client.categorieClient ?? 'N/A' }}
+									</p>
+								</div>
+							</div>
+						</a>
+					</div>
+				{% endfor %}
+			</div>
+		{% endif %}
+	</div>
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Infos client -
+	{{ client.prenom }}
+	{{ client.nom }}
+{% endblock %}
+
+{% block body %}
+	<div class="container mt-4">
+		<h2>Modifier le client</h2>
+
+		{{ form_start(form) }}
+		{{ form_row(form.coefficientTaxe) }}
+		{{ form_row(form.reduction) }}
+		{{form_row(form.save, {'label' : "Valider les modifications", 'attr':{'class': 'btn-vert text-white'}})}}
+		{{ form_end(form, {'render_rest': false}) }}
+
+		<hr>
+
+		<h3>Commandes de
+			{{ client.prenom }}
+			{{ client.nom }}</h3>
+
+		{% if commandes is empty %}
+			<div class="alert alert-info">Aucune commande pour ce client.</div>
+		{% else %}
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Date</th>
+						<th>Montant</th>
+						<th>État paiement</th>
+						<th>Moyen de paiement</th>
+						<th>Date de paiement</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for commande in commandes %}
+						{% set total = 0 %}
+						{% for cp in commande.commandesProduit %}
+							{% set total = total + (cp.produit.prix * cp.quantite) %}
+						{% endfor %}
+
+						<tr>
+							<td>{{ commande.numero }}</td>
+							<td>{{ commande.date|date('d/m/Y') }}</td>
+							<td>{{ total|number_format(2, ',', ' ') }}
+								€</td>
+							<td>
+								<span class="badge bg-success">{{commande.statutPaiement}}</span>
+							</td>
+							<td>{{ commande.typePaiement}}</td>
+							{% if commande.datePaiement %}
+								<td>{{ commande.datePaiement|date('d/m/Y')}}</td>
+								{% else %}
+									<td></td>
+							{% endif %}
+
+							<td>
+							{% if commande.statutPaiement != 'Payé' %}								<a href="{{ path('app_commande_paiement', {id: commande.id}) }}" class="btn btn-sm btn-outline-primary">
+									Valider paiement
+								</a>{% endif %}
+							
+
+								<a href="{{ path('app_commande_facture', {id: commande.id}) }}" class="btn btn-sm btn-outline-secondary">
+									Facture
+								</a>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		{% endif %}
+
+
+	</div>
+{% endblock %}

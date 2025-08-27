@@ -132,12 +132,12 @@ class Produit
         return $this;
     }
 
-    public function getQuantiteStock(): ?int
+    public function getStock(): ?int
     {
         return $this->stock;
     }
 
-    public function setQuantiteStock(int $stock): static
+    public function setStock(int $stock): static
     {
         $this->stock = $stock;
 

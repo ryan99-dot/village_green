@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier la sous rubrique : {{sousRubrique.nom}}
+{% endblock %}
+
+{% block body %}
+	<div class="container mt-4">
+		<h2>Modifier la sous rubrique</h2>
+
+		{{ form_start(form) }}
+		{{ form_end(form) }}
+
+	</div>
+{% endblock %}

@@ -1,20 +1,33 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Catégories{% endblock %}
+{% block title %}Catégories
+{% endblock %}
 
 {% block body %}
-	<div class="container-fluid">
-		<div class="row">
-			{% for rubrique in rubriques %}
-				<div class="col-12 col-lg-4 my-2 my-lg-5 d-flex justify-content-center">
-					<a href="{{ path('app_sous_rubriques', { rubrique: rubrique.id}) }}" class="card rubrique text-decoration-none custom-link w-100">
-						<img src="{{rubrique.photo}}" class="card-img-top object-fit-cover" alt="{{rubrique.nom}}">
-						<div class="card-body p-0">
-							<p class="card-text text-center text-uppercase bg-secondary-subtle d-flex align-items-center justify-content-center h-100">{{rubrique.nom}}</p>
-						</div>
-					</a>
-				</div>
-			{% endfor %}
-		</div>
+
+<div class="container-fluid text-center">
+	<a href="{{path('app_rubrique_new')}}" class="btn btn-vert text-white btn-lg fw-bold mt-2">Ajouter</a>
+	<div class="row">
+		{% for rubrique in rubriques %}
+			<div class="col-12 col-lg-4 my-2 my-lg-5 d-flex justify-content-center">
+				<a href="{{ path('app_sous_rubriques', { rubrique: rubrique.id}) }}" class="card rubrique text-decoration-none custom-link w-100">
+					<img src="{{ rubrique.photo }}" class="card-img-top object-fit-cover" alt="{{ rubrique.nom }}">
+					<div class="card-body p-0">
+						<p class="card-text text-center text-uppercase bg-secondary-subtle d-flex align-items-center justify-content-center h-100">{{ rubrique.nom }}</p>
+					</div>
+				</a>
+				{% if app.user and app.user.service == 'Achat' %}
+					<div class="mt-2 text-center">
+						<a href="{{path('app_rubrique_edit', {id: rubrique.id})}}" class="btn btn-warning btn-sm mb-2">Modifier</a>
+						<form method="post" action="{{ path('app_rubrique_delete', {id: rubrique.id}) }}" onsubmit="return confirm('Supprimer cette rubrique ?');" style="display:inline;">
+							<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ rubrique.id) }}">
+							<button class="btn btn-danger btn-sm">Supprimer</button>
+						</form>
+					</div>
+				{% endif %}
+			</div>
+		{% endfor %}
 	</div>
+</div>
+
 {% endblock %}

@@ -1,20 +1,64 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ExportController!{% endblock %}
+{% block title %}Gestion des livraisons
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+	<h2>🚚 Commandes - Service Export</h2>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/home/ryan/Documents/village_green/src/Controller/ExportController.php</code></li>
-        <li>Your template at <code>/home/ryan/Documents/village_green/templates/export/index.html.twig</code></li>
-    </ul>
-</div>
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>N°</th>
+				<th>Date</th>
+				<th>Client</th>
+				<th>Adresse livraison</th>
+				<th>Produits</th>
+				<th>État</th>
+                <th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for commande in commandes %}
+				<tr>
+					<td>{{ commande.numero }}</td>
+					<td>{{ commande.date|date('d/m/Y') }}</td>
+					<td>{{ commande.utilisateur.nom }}
+						{{ commande.utilisateur.prenom }}</td>
+					<td>
+						{% for adresse in commande.commandesAdresse %}
+							{% if adresse.typeAdresse == 'Livraison' %}
+								{{ adresse.adresse.adresse }}<br>
+								{{ adresse.adresse.codePostal }}
+								{{ adresse.adresse.ville }}<br>
+							{% endif %}
+						{% endfor %}
+					</td>
+					<td>
+						<ul>
+							{% for cp in commande.commandesProduit %}
+								<li>{{ cp.produit.nom }}
+									×
+									{{ cp.quantite }}</li>
+							{% endfor %}
+						</ul>
+					</td>
+					<td>
+						{{ form_start(forms[commande.id], { 'attr': {'class': 'd-inline'} }) }}
+							{{ form_widget(forms[commande.id].etat) }}
+						{{ form_end(forms[commande.id], {'render_rest': false}) }}
+					</td>
+					<td>
+						<a href="#" class="btn btn-sm btn-outline-secondary">
+							Bon de livraison
+						</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="6" class="text-center">Aucune commande trouvée</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 {% endblock %}

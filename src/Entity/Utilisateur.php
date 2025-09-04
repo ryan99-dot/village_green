@@ -316,7 +316,7 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->adresses;
     }
 
-    public function addAdress(Adresse $adress): static
+    public function addAdresse(Adresse $adress): static
     {
         if (!$this->adresses->contains($adress)) {
             $this->adresses->add($adress);
@@ -326,7 +326,7 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function removeAdress(Adresse $adress): static
+    public function removeAdresse(Adresse $adress): static
     {
         if ($this->adresses->removeElement($adress)) {
             // set the owning side to null (unless already changed)

@@ -27,7 +27,7 @@
 						<div class="carousel-item {% if loop.first %} active {% endif %}">
 							<div class="d-flex carousels">
 								<img src="{{produit.photo}}" class="flex-shrink-0 w-50">
-								<div class="flex-grow-1 position-relative bg-light">
+								<div class="flex-grow-1 position-relative bg-body-secondary">
 									<div class="position-absolute top-50 start-0 translate-middle-y ps-3">
 										<h6 class="fw-bold">{{produit.nom}}</h6>
 										<p class="fst-italic mb-0">{{produit.prix}}€</p>
@@ -73,13 +73,13 @@
 								<!-- Colonne gauche : image + nom du fournisseur -->
 								<div class="w-50 position-relative">
 									<img src="{{ bloc.produits[0].photo }}" class="w-100 h-100 object-fit-cover" alt="Photo du produit vedette">
-									<h6 class="fw-bold position-absolute bottom-0 start-0 m-2 bg-white bg-opacity-75 px-2 py-1 rounded">
+									<h6 class="fw-bold position-absolute bottom-0 start-0 m-2 background bg-opacity-75 px-2 py-1 rounded">
 										{{ bloc.fournisseur.nom }}
 									</h6>
 								</div>
 
 								<!-- Colonne droite : liste des produits -->
-								<div class="w-50 bg-light p-3 overflow-auto">
+								<div class="w-50 p-3 overflow-auto bg-body-secondary">
 									<ul class="list-unstyled mb-0">
 										{% for produit in bloc.produits %}
 											<li class="d-flex justify-content-between border-bottom py-1">

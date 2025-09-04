@@ -7,13 +7,13 @@
 	<div class="container-fluid">
 		<div class="row d-flex justify-content-center">
 			<div class="col-11 my-5 d-flex flex-column flex-lg-row">
-				<img src="{{produit.photo}}" class="image object-fit-cover w-100" alt="{{produit.nom}}">
+				<img src="{{produit.photo}}" class="image object-fit-cover w-100 h-50" alt="{{produit.nom}}">
 				<div class="card-body p-0 mt-5 mt-lg-0">
 					<div class="d-flex justify-content-between mx-3">
 						<p class="text-uppercase d-flex align-items-center justify-content-center mb-1 nom_article">{{produit.nom}}</p>
 						<p class="mb-0">{{produit.reference}}</p>
 					</div>
-					<p class="m-4 p-2 description bg-secondary-subtle">{{produit.description}}</p>
+					<p class="m-4 p-2 description bg-secondary-subtle h-50">{{produit.description}}</p>
 					<form action="/panier/add/{{ produit.id }}" method="post" class="ms-4 mt-3 d-flex align-items-center gap-2 justify-content-end">
 						<label for="quantity_{{ produit.id }}" class="form-label mb-0">{{produit.prix|number_format(2, '.', ' ')}}€ x </label>
 						<input type="number" id="quantity_{{ produit.id }}" name="quantity" value="1" min="1" class="form-control quantite"/>

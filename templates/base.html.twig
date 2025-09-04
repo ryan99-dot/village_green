@@ -4,7 +4,8 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>
-			{% block title %}{% endblock %} - Village Green
+			{% block title %}{% endblock %}
+			- Village Green
 		</title>
 		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
 		{% block stylesheets %}
@@ -23,5 +24,27 @@
 		{% include "header.html.twig" %}
 		{% block body %}{% endblock %}
 		{% include "footer.html.twig" %}
+<script>
+    const btn = document.getElementById('themeToggle');
+    const html = document.documentElement;
+
+    // Charger le thème depuis localStorage ou défaut 'light'
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    html.setAttribute('data-bs-theme', savedTheme);
+    btn.innerHTML = savedTheme === 'dark' ? '<i class="bi bi-sun-fill"></i>' : '<i class="bi bi-moon-fill"></i>';
+    btn.className = savedTheme === 'dark' ? "btn btn-outline-light" : "btn btn-outline-dark";
+
+    // Changer le thème au clic
+    btn.addEventListener('click', () => {
+        const current = html.getAttribute('data-bs-theme');
+        const newTheme = current === 'light' ? 'dark' : 'light';
+        html.setAttribute('data-bs-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        btn.innerHTML = newTheme === 'dark' ? '<i class="bi bi-sun-fill"></i>' : '<i class="bi bi-moon-fill"></i>';
+        btn.className = newTheme === 'dark' ? "btn btn-outline-light" : "btn btn-outline-dark";
+    });
+</script>
+
+
 	</body>
 </html>

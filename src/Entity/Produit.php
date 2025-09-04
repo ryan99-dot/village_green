@@ -144,12 +144,12 @@ class Produit
         return $this;
     }
 
-    public function ispublie(): ?bool
+    public function isPublie(): ?bool
     {
         return $this->publie;
     }
 
-    public function setpublie(bool $publie): static
+    public function setPublie(bool $publie): static
     {
         $this->publie = $publie;
 

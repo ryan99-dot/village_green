@@ -5,7 +5,9 @@
 
 {% block body %}
 	<div class="container-fluid text-center">
-		<a href="{{path('app_produit_new')}}" class="btn btn-vert text-white btn-lg fw-bold mt-2">Ajouter</a>
+		{% if app.user and app.user.service == 'Achat' %}
+			<a href="{{path('app_produit_new')}}" class="btn btn-vert text-white btn-lg fw-bold mt-2">Ajouter</a>
+		{% endif %}
 		<div class="row">
 			{% for produit in produits %}
 				{% if produit.actif or (not produit.actif and app.user and app.user.service == 'Achat')%}

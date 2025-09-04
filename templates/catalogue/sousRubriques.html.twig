@@ -6,7 +6,9 @@
 
 {% block body %}
 	<div class="container-fluid text-center">
-		<a href="{{path('app_sous_rubrique_new')}}" class="btn btn-vert text-white btn-lg fw-bold mt-2">Ajouter</a>
+		{% if app.user and app.user.service == 'Achat' %}
+			<a href="{{path('app_sous_rubrique_new')}}" class="btn btn-vert text-white btn-lg fw-bold mt-2">Ajouter</a>
+		{% endif %}
 		<div class="row">
 			{% for sousRubrique in rubrique.sousRubriques %}
 				<div class="col-12 col-lg-4 my-2 my-lg-5 d-flex justify-content-center">

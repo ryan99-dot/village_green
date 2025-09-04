@@ -1,0 +1,191 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tableau de bord{% endblock %}
+
+{% block body %}
+<div class="container my-4">
+
+    <h1 class="mb-4">Tableau de bord</h1>
+
+    <!-- Formulaire de choix d'année -->
+    <form method="get" class="row g-2 mb-4">
+        <div class="col-auto">
+            <label for="annee" class="form-label">Choisir une année :</label>
+            <select id="annee" name="annee" class="form-select" onchange="this.form.submit()">
+                {% for y in range(2020, "now"|date("Y"))|reverse %}
+                    <option value="{{ y }}" {% if y == annee %}selected{% endif %}>{{ y }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </form>
+
+    <!-- Chiffre d'affaires par mois -->
+    <h2>Chiffre d'affaires par mois</h2>
+    <table class="table table-striped table-bordered">
+        <thead class="table-success">
+            <tr>
+                <th>Mois</th>
+                <th>Chiffre d'affaires (€)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in caParMois %}
+                <tr>
+                    <td>{{ row.mois_nom }}</td>
+                    <td>{{ row.total|number_format(2, ',', ' ') }}</td>
+                </tr>
+            {% else %}
+                <tr><td colspan="2" class="text-center">Aucune donnée</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Chiffre d'affaires par fournisseur -->
+    <h2>Chiffre d'affaires par fournisseur</h2>
+    <table class="table table-striped table-bordered">
+        <thead class="table-success">
+            <tr>
+                <th>Fournisseur</th>
+                <th>Chiffre d'affaires (€)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in caParFour %}
+                <tr>
+                    <td>{{ row.fournisseur }}</td>
+                    <td>{{ row.total|number_format(2, ',', ' ') }}</td>
+                </tr>
+            {% else %}
+                <tr><td colspan="2" class="text-center">Aucune donnée</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Top 10 Produits -->
+    <h2>Top 10 des produits les plus commandés</h2>
+    <table class="table table-striped table-bordered">
+        <thead class="table-success">
+            <tr>
+                <th>Produit</th>
+                <th>Quantité</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in top10Quantite %}
+                <tr>
+                    <td>{{ row.nom }}</td>
+                    <td>{{ row.quantite_totale }}</td>
+                </tr>
+            {% else %}
+                <tr><td colspan="2" class="text-center">Aucune donnée</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Top 10 Produits les plus rentables -->
+    <h2>Top 10 des produits les plus rentables</h2>
+    <table class="table table-striped table-bordered">
+        <thead class="table-success">
+            <tr>
+                <th>Produit</th>
+                <th>Marge (€)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in top10Marge %}
+                <tr>
+                    <td>{{ row.nom }}</td>
+                    <td>{{ row.marge_totale|number_format(2, ',', ' ') }}</td>
+                </tr>
+            {% else %}
+                <tr><td colspan="2" class="text-center">Aucune donnée</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Top 10 Clients par commandes -->
+    <h2>Top 10 des clients par nombre de commandes</h2>
+    <table class="table table-striped table-bordered">
+        <thead class="table-success">
+            <tr>
+                <th>Client</th>
+                <th>Nombre de commandes</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in top10ClientsCommande %}
+                <tr>
+                    <td>{{ row.nom }}, {{ row.prenom }}</td>
+                    <td>{{ row.nb_commandes }}</td>
+                </tr>
+            {% else %}
+                <tr><td colspan="2" class="text-center">Aucune donnée</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Top 10 Clients par chiffre d'affaires -->
+    <h2>Top 10 des clients les plus rentables</h2>
+    <table class="table table-striped table-bordered">
+        <thead class="table-success">
+            <tr>
+                <th>Client</th>
+                <th>Marge (€)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in top10ClientsChiffre %}
+                <tr>
+                    <td>{{ row.nom }}, {{ row.prenom }}</td>
+                    <td>{{ row.total|number_format(2, ',', ' ') }}</td>
+                </tr>
+            {% else %}
+                <tr><td colspan="2" class="text-center">Aucune donnée</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Répartition par type de clients -->
+    <h2>Répartition du chiffre d'affaires par type de client</h2>
+    <table class="table table-striped table-bordered">
+        <thead class="table-success">
+            <tr>
+                <th>Type de client</th>
+                <th>Marge (€)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in caTypeClient %}
+                <tr>
+                    <td>{{ row.categorie_client }}</td>
+                    <td>{{ row.total|number_format(2, ',', ' ') }}</td>
+                </tr>
+            {% else %}
+                <tr><td colspan="2" class="text-center">Aucune donnée</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Commandes en cours de livraison -->
+    <h2>Commandes en cours de livraison</h2>
+    <table class="table table-striped table-bordered">
+        <thead class="table-success">
+            <tr>
+                <th>Statut</th>
+                <th>Nombre de commandes</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in commandeEnLivraison %}
+                <tr>
+                    <td>{{ row.statut }}</td>
+                    <td>{{ row.nb_commandes_en_cours }}</td>
+                </tr>
+            {% else %}
+                <tr><td colspan="2" class="text-center">Aucune donnée</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+{% endblock %}

@@ -4,19 +4,20 @@
 {% endblock %}
 
 {% block body %}
-	<div class="d-flex">
-		<div class="container col-3 d-flex flex-column bg-secondary-subtle mb-5 rounded">
+	<div class="d-flex flex-column flex-md-row">
+		<div class="container col-11 col-md-3 d-flex flex-column bg-secondary-subtle my-md-5 pb-4 rounded">
 			<h1 class="my-3 font-weight-normal text-decoration-underline">Mon profil</h1>
 			<a href="{{path('app_infos')}}" class="ms-4 mb-2 lien">Mes informations</a>
 			<a href="{{path('app_adresses')}}" class="ms-4 mb-2 lien">Mes adresses</a>
-			<a href="{{path('app_commandes')}}" class="ms-4 lien">Mes commandes</a>
+			<a href="{{path('app_commandes')}}" class="ms-4 mb-2 lien">Mes commandes</a>
+			<a href="{{path('app_logout')}}" class="ms-4 lien">Déconnexion</a>
 		</div>
-		<div class="container flex-column col-lg-8">
+		<div class="container flex-column col-md-8">
 			<div class="container ">
 
-				{{form_start(form, {'attr':{'class': 'bg-secondary-subtle d-flex flex-column align-items-center mt-5 rounded'}})}}
+				{{form_start(form, {'attr':{'class': 'bg-secondary-subtle d-flex flex-column align-items-center mt-md-5 mt-3 rounded'}})}}
 				{{ form_errors(form) }}
-				<h1 class="h3 my-3 font-weight-normal text-decoration-underline">Changement de mot de passe</h1>
+				<h1 class="h3 my-3 font-weight-normal text-decoration-underline text-center">Changement de mot de passe</h1>
 
 				{{form_label(form.currentPassword)}}
 				{{form_widget(form.currentPassword, {'attr':{'class': 'text-center w-75'}})}}
@@ -45,8 +46,8 @@
 			</div>
 			<div class="container mb-5">
 
-				{{form_start(formAdresse, {'attr':{'class': 'bg-secondary-subtle d-flex flex-column align-items-center mt-5 rounded'}})}}
-				<h1 class="h3 my-3 font-weight-normal text-decoration-underline">Ajouter une nouvelle adresse</h1>
+				{{form_start(formAdresse, {'attr':{'class': 'bg-secondary-subtle d-flex flex-column align-items-center mt-md-5 mt-3 rounded'}})}}
+				<h1 class="h3 my-3 font-weight-normal text-decoration-underline text-center">Ajouter une nouvelle adresse</h1>
 
 				{{form_label(formAdresse.adresse)}}
 				{{form_widget(formAdresse.adresse, {'attr':{'class': 'text-center w-75 mb-3'}})}}

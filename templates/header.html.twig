@@ -6,6 +6,9 @@
 
 		<!-- Logo centré -->
 		<div class="col col-lg-4 h-100 text-center">
+			<button id="themeToggle" class="btn btn-outline-dark">
+				<i class="bi bi-moon-fill"></i>
+			</button>
 			<img src="{{ asset('images/logo_blanc.png') }}" class="img-fluid h-100 logo-light" alt="Logo Village Green (clair)">
 
 			<img src="{{ asset('images/logo_noir.png') }}" class="img-fluid h-100 logo-dark" alt="Logo Village Green (sombre)">
@@ -106,7 +109,7 @@
 				</li>
 				<li class="nav-item col-2 point5 text-center">
 
-					<a class="nav-link text-uppercase fs-5 custom-link" {% if app.user %} href="{{path('app_logout')}}" {% else %} href="{{path('app_login')}}" {% endif %}>
+					<a class="nav-link text-uppercase fs-5 custom-link" {% if app.user %} href="{{path('app_profil', {id: app.user.id})}}" {% else %} href="{{path('app_login')}}" {% endif %}>
 						<i class="bi bi-person-circle"></i>
 					</a>
 

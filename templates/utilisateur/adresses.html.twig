@@ -22,7 +22,7 @@
                     <td>{{ adresse.ville }}</td>
                     <td>{{ adresse.codePostal }}</td>
                     <td>
-                        <a href="{{ path('app_adresse_edit', {id: adresse.id}) }}" class="btn btn-sm btn-vert text-white">Modifier</a>
+                        <a href="{{ path('app_adresse_edit', {id: adresse.id}) }}" class="btn btn-sm btn-vert text-white mb-2 mb-md-0">Modifier</a>
                         <form method="post" action="{{ path('app_adresse_delete', {id: adresse.id}) }}" style="display:inline-block" onsubmit="return confirm('Supprimer cette adresse ?');">
                             <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ adresse.id) }}">
                             <button class="btn btn-sm btn-danger">Supprimer</button>

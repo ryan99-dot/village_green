@@ -6,6 +6,7 @@ use App\Repository\BonDeLivraisonRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: BonDeLivraisonRepository::class)]
 class BonDeLivraison
@@ -16,9 +17,11 @@ class BonDeLivraison
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Regex('/^BL\d{3}$/')]
     private ?string $numero = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Choice(["En cours d'expédition", 'En préparation', 'Livré', 'Préparé', 'En attente', 'Annulé'])]
     private ?string $statut = null;
 
     /**

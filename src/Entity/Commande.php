@@ -6,6 +6,7 @@ use App\Repository\CommandeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CommandeRepository::class)]
 class Commande
@@ -16,21 +17,26 @@ class Commande
     private ?int $id = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\Regex('/^CMD\d{3}$/')]
     private ?string $numero = null;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $date = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Choice(['En cours', 'Livrée', 'Préparée', 'En cours', 'Annulée'])]
     private ?string $etat = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\Regex('/^PAY\d{3}$/')]
     private ?string $referencePaiement = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Choice(['Carte Bancaire', 'Virement', 'Chèque'])]
     private ?string $typePaiement = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Choice(['Payé', 'En attente', 'Annulé'])]
     private ?string $statutPaiement = null;
 
     #[ORM\Column(nullable: true)]

@@ -6,6 +6,7 @@ use App\Repository\FournisseurRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: FournisseurRepository::class)]
 class Fournisseur
@@ -16,15 +17,18 @@ class Fournisseur
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Regex('/^FOUR\d{3}$/')]
     private ?string $reference = null;
 
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Email()]
     private ?string $mail = null;
 
     #[ORM\Column(length: 10)]
+    #[Assert\Regex('/^0[1-9]\d{8}$/')]
     private ?string $telephone = null;
 
     /**

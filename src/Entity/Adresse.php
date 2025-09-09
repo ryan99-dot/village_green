@@ -6,6 +6,7 @@ use App\Repository\AdresseRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: AdresseRepository::class)]
 class Adresse
@@ -22,6 +23,7 @@ class Adresse
     private ?string $ville = null;
 
     #[ORM\Column(length: 5)]
+    #[Assert\Regex('/^[0-9]{5}$/')]
     private ?string $codePostal = null;
 
     /**

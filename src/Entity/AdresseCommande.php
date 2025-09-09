@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\AdresseCommandeRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: AdresseCommandeRepository::class)]
 class AdresseCommande
@@ -24,12 +25,14 @@ class AdresseCommande
     private ?BonDeLivraison $bonLivraison = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\Regex('/^FAC\d{3}$/')]
     private ?string $numeroFacture = null;
 
     #[ORM\Column(type: Types::DATE_IMMUTABLE, nullable: true)]
     private ?\DateTimeImmutable $date = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Choice(['Livraison', 'Facturation'])]
     private ?string $typeAdresse = null;
 
     public function getId(): ?int

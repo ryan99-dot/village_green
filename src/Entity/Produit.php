@@ -8,8 +8,10 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use ApiPlatform\Metadata\ApiResource;
 
 #[ORM\Entity(repositoryClass: ProduitRepository::class)]
+#[ApiResource()]
 class Produit
 {
     #[ORM\Id]
@@ -18,7 +20,7 @@ class Produit
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-        #[Assert\Regex('/^PROD\d{3}$/')]
+    #[Assert\Regex('/^PROD\d{3}$/')]
     private ?string $reference = null;
 
     #[ORM\Column(length: 255)]

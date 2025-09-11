@@ -1,7 +1,28 @@
 GET https://127.0.0.1:8000/api/rubriques
 Accept: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NTc1OTk1MTksImV4cCI6MTc1NzYwMzExOSwicm9sZXMiOlsiUk9MRV9DT01NRVJDSUFMIiwiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoicGF1bC5kdXJhbmRAdmlsbGFnZWdyZWVuLmZyIn0.c_rinJmP_7RyNkVKfLawVrwng7h7k3RAvQpGRGUxCAmbXuJ3rXmsEsBpRi88cRlYFcVMrDhGmD0bmky9vd1sxfvbF-PadXBchwgIqnx6LGeAaM_JhiPdrfDREwJgjblrj4Cacb1nB08wrmqWpMr8NDcqktr_nrsjesE8eH2CJPpQBLOrt0Eesuwz4qBwbEGQEjlIuJLrQRUH2_TEcIMjs7FwAjJY_BFmvOdrgboBV7Gw_70XZILcpQiKR8ByjaECH_XDUnIjuAnZ6wNN-3rygyN3LJcRJHi5T-6IYd9CBL5tFSL7ldRBVvsAweh-7xluhSvpLHg_-JFD8eD9gRrx5A
 
 ###
 
 GET https://127.0.0.1:8000/api/rubriques/1
 Accept: application/json
+
+
+###
+
+POST https://127.0.0.1:8000/api/login_check
+Content-Type: application/json
+Accept: application/json
+
+{
+    "email": "paul.durand@villagegreen.fr",
+    "password": "1234"
+}
+
+
+###
+
+POST https://127.0.0.1:8000/api/token/refresh
+Content-Type: application/x-www-form-urlencoded
+
+refresh_token=90f4f2ba0101252745f3f8f6e6922626d09825fb872157bc917f3cd115ebe176c09b30562477d51a9821f84cd0f4fdc45eb810e2edbe29516915353facca07db
